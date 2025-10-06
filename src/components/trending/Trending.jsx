@@ -9,7 +9,7 @@ const Trending = ({ trending }) => {
   const navigate = useNavigate();
   return (
     <div className="mt-6 max-[1200px]:px-4 max-md:px-0">
-      <h1 className="text-[#ffbade] text-2xl font-bold max-md:pl-4">
+      <h1 className="text-[#B24B92] text-2xl font-bold max-md:pl-4">
         Trending
       </h1>
       <div className="pr-[60px] relative mx-auto overflow-hidden z-[1] mt-6 max-[759px]:pr-0">
@@ -61,10 +61,10 @@ const Trending = ({ trending }) => {
             ))}
         </Swiper>
         <div className="absolute top-0 right-0 bottom-0 w-[45px] flex flex-col space-y-2 max-[759px]:hidden">
-          <div className="btn-next bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#ffbade] hover:text-[#383747]">
+          <div className="btn-next bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#B24B92] hover:text-[#383747]">
             <FaChevronRight />
           </div>
-          <div className="btn-prev bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#ffbade] hover:text-[#383747]">
+          <div className="btn-prev bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#B24B92] hover:text-[#383747]">
             <FaChevronLeft />
           </div>
         </div>

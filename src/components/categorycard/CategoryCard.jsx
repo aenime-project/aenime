@@ -88,7 +88,7 @@ const CategoryCard = React.memo(
     return (
       <div className={`w-full ${className}`}>
         <div className="flex items-center justify-between">
-          <h1 className="font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px] capitalize">
+          <h1 className="font-bold text-2xl text-[#B24B92] max-[478px]:text-[18px] capitalize">
             {label}
           </h1>
           {showViewMore && (
@@ -96,10 +96,10 @@ const CategoryCard = React.memo(
               to={`/${path}`}
               className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group"
             >
-              <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#ffbade] transition-all ease-out">
+              <p className="text-white text-[12px] font-semibold h-fit leading-0 group-hover:text-[#B24B92] transition-all ease-out">
                 View more
               </p>
-              <FaChevronRight className="text-white text-[10px] group-hover:text-[#ffbade] transition-all ease-out" />
+              <FaChevronRight className="text-white text-[10px] group-hover:text-[#B24B92] transition-all ease-out" />
             </Link>
           )}
         </div>
@@ -200,7 +200,7 @@ const CategoryCard = React.memo(
                   </div>
                   <Link
                     to={`/${item.id}`}
-                    className="text-white font-semibold mt-1 item-title hover:text-[#FFBADE] hover:cursor-pointer line-clamp-1"
+                    className="text-white font-semibold mt-1 item-title hover:text-[#B24B92] hover:cursor-pointer line-clamp-1"
                   >
                     {language === "EN" ? item.title : item.japanese_title}
                   </Link>
@@ -308,7 +308,7 @@ const CategoryCard = React.memo(
                 </div>
                 <Link
                   to={`/${item.id}`}
-                  className="text-white font-semibold mt-1 item-title hover:text-[#FFBADE] hover:cursor-pointer line-clamp-1"
+                  className="text-white font-semibold mt-1 item-title hover:text-[#B24B92] hover:cursor-pointer line-clamp-1"
                 >
                   {language === "EN" ? item.title : item.japanese_title}
                 </Link>

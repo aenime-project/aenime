@@ -7,7 +7,7 @@ const ToggleButton = ({ label, isActive, onClick }) => (
     <h1 className="capitalize text-[13px]">{label}</h1>
     <span
       className={`capitalize text-[13px] ${
-        isActive ? "text-[#ffbade]" : "text-red-500"
+        isActive ? "text-[#B24B92]" : "text-red-500"
       }`}
     >
       {isActive ? "on" : "off"}

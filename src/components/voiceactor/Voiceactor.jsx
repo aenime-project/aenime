@@ -7,7 +7,7 @@ function Voiceactor({ animeInfo, className }) {
   return (
     <div className={`w-full mt-8 flex flex-col gap-y-4 ${className}`}>
       <div className="flex justify-between items-center">
-        <h1 className="font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px] capitalize">
+        <h1 className="font-bold text-2xl text-[#B24B92] max-[478px]:text-[18px] capitalize">
           Characters & Voice Actors
         </h1>
         <button className="flex w-fit items-baseline h-fit rounded-3xl gap-x-1 group">

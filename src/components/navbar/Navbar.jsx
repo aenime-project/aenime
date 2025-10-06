@@ -72,9 +72,8 @@ function Navbar() {
               to="/"
               className="text-4xl font-bold max-[575px]:text-3xl cursor-pointer"
             >
-              {logoTitle.slice(0, 3)}
-              <span className="text-[#FFBADE]">{logoTitle.slice(3, 4)}</span>
-              {logoTitle.slice(4)}
+              {logoTitle.slice(0, 2)}
+              <span className="text-[#B24B92]">{logoTitle.slice(2)}</span>
             </Link>
           </div>
           <WebSearch />
@@ -99,7 +98,7 @@ function Navbar() {
             >
               <FontAwesomeIcon
                 icon={item.icon}
-                className="text-[#ffbade] text-xl font-bold"
+                className="text-[#B24B92] text-xl font-bold"
               />
               <p className="text-[15px]">{item.label}</p>
             </Link>
@@ -114,7 +113,7 @@ function Navbar() {
                     index === 0 ? "rounded-l-[3px]" : "rounded-r-[3px]"
                   } ${
                     language === lang
-                      ? "bg-[#ffbade] text-black"
+                      ? "bg-[#B24B92] text-black"
                       : "bg-gray-600 text-white"
                   }`}
                 >
@@ -127,12 +126,12 @@ function Navbar() {
             </div>
           </div>
           <Link
-            to="https://t.me/zenime_discussion"
+            to="https://t.me/aenime_discussions"
             className="flex flex-col gap-y-1 items-center cursor-pointer"
           >
             <FaTelegramPlane
               // icon={faTelegram}
-              className="text-xl font-bold text-[#ffbade]"
+              className="text-xl font-bold text-[#B24B92]"
             />
             <p className="text-[15px] mb-[1px] text-white">Join Telegram</p>
           </Link>

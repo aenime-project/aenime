@@ -1,0 +1,15 @@
+.env
+.gitignore
+components.json
+eslint.config.js
+jsconfig.json
+LICENSE
+package-lock.json
+package.json
+postcss.config.js
+README.md
+tailwind.config.js
+vite.config.js
+wrangler.toml
+.git/
+node_modules/

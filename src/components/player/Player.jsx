@@ -4,7 +4,7 @@
 import Hls from "hls.js";
 import { useEffect, useRef, useState } from "react";
 import Artplayer from "artplayer";
-import artplayerPluginChapter from "./artPlayerPluinChaper";
+import artplayerPluginChapter from "./artPlayerPluginChaper";
 import autoSkip from "./autoSkip";
 import artplayerPluginVttThumbnail from "./artPlayerPluginVttThumbnail";
 import {

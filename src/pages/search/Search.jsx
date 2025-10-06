@@ -44,7 +44,7 @@ function Search() {
         <div className='w-full px-4 mt-[128px] grid grid-cols-[minmax(0,75%),minmax(0,25%)] gap-x-6 max-[1200px]:flex max-[1200px]:flex-col max-[1200px]:gap-y-10 max-custom-md:mt-[80px] max-[478px]:mt-[60px]'>
             {loading ? (
                 <CategoryCardLoader className={"max-[478px]:mt-2"} />
-            ) : page > totalPages ? <p className='font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px] max-[300px]:leading-6'>You came a long way, go back <br className='max-[300px]:hidden' />nothing is here</p> : searchData && searchData.length > 0 ? (
+            ) : page > totalPages ? <p className='font-bold text-2xl text-[#B24B92] max-[478px]:text-[18px] max-[300px]:leading-6'>You came a long way, go back <br className='max-[300px]:hidden' />nothing is here</p> : searchData && searchData.length > 0 ? (
                 <div>
                     <CategoryCard
                         label={`Search results for: ${keyword}`}
@@ -54,8 +54,8 @@ function Search() {
                     />
                     <PageSlider page={page} totalPages={totalPages} handlePageChange={handlePageChange} />
                 </div>
-            ) : error ? <p className='font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px]'>Couldn&apos;t get search result please try again</p> : (
-                <h1 className='font-bold text-2xl text-[#ffbade] max-[478px]:text-[18px]'>{`Search results for: ${keyword}`}</h1>
+            ) : error ? <p className='font-bold text-2xl text-[#B24B92] max-[478px]:text-[18px]'>Couldn&apos;t get search result please try again</p> : (
+                <h1 className='font-bold text-2xl text-[#B24B92] max-[478px]:text-[18px]'>{`Search results for: ${keyword}`}</h1>
             )}
             <div className="w-full flex flex-col gap-y-10">
                 {homeInfoLoading && !homeInfo ? (

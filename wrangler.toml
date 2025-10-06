@@ -1,0 +1,15 @@
+name = "aenime"
+main = "src/worker.js"
+compatibility_date = "2024-06-01"
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+[vars]
+ENVIRONMENT = "production"
+
+[observability]
+enabled = true
+head_sampling_rate = 1

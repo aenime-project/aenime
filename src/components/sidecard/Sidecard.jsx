@@ -38,7 +38,7 @@ function Sidecard({ data, label, className, limit }) {
     useToolTipPosition(hoveredItem, data);
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
-      <h1 className="font-bold text-2xl text-[#ffbade]">{label}</h1>
+      <h1 className="font-bold text-2xl text-[#B24B92]">{label}</h1>
       <div className="flex flex-col space-y-4 bg-[#2B2A3C] p-4 pt-8">
         {data &&
           displayedData.map((item, index) => (
@@ -83,7 +83,7 @@ function Sidecard({ data, label, className, limit }) {
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
                     to={`/${item.id}`}
-                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#ffbade] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
+                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#B24B92] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() =>
                       window.scrollTo({ top: 0, behavior: "smooth" })
                     }

@@ -73,9 +73,9 @@ const fullScreenOnIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2
 const fullScreenOffIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"width="24" height="24" style="margin-bottom: 5px; vertical-align: middle;"><path d="M109.2,134.9l-8.4,50.1c-0.4,2.7-2.4,3.3-4.4,1.4L82,172l-27.9,27.9l-14.2-14.2l27.9-27.9l-14.4-14.4c-1.9-1.9-1.3-3.9,1.4-4.4l50.1-8.4c1.8-0.5,3.6,0.6,4.1,2.4C109.4,133.7,109.4,134.3,109.2,134.9L109.2,134.9z M172.1,82.1L200,54.2L185.8,40l-27.9,27.9l-14.4-14.4c-1.9-1.9-3.9-1.3-4.4,1.4l-8.4,50.1c-0.5,1.8,0.6,3.6,2.4,4.1c0.5,0.2,1.2,0.2,1.7,0l50.1-8.4c2.7-0.4,3.3-2.4,1.4-4.4L172.1,82.1z"/></svg>`;
 
 const logo = `<p style="display: flex; gap: 7px; align-items: center; background-color:#1F2020; padding:5px;padding-inline:7px; border-radius:5px">
-    <b style="color: #ffbade;">Powered by</b>
+    <b style="color: #B24B92;">Powered by</b>
     <span style="font-size: 14px;">
-        Zen<span style="color: #ffbade;">!</span>me
+        Ae<span style="color: #B24B92;">nime</span>
     </span>
 </p>
 `;

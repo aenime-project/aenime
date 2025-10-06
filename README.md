@@ -1,22 +1,22 @@
 <p align="center">
   <div align="center">
-    <a href="https://zenime.site/">
-      <img alt="AnimeHi" src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/logo.png" width="220"/>
+    <a href="https://aenime.webbase.workers.dev/">
+      <img alt="AnimeHi" src="https://raw.githubusercontent.com/cd-Crypton/aenime/refs/heads/main/public/logo.png" width="220"/>
     </a>
   </div>
-    <h3 align="center">Zenime - Ad free anime streaming platform</h3>
+    <h3 align="center">Aenime - Ad-Free Anime Streaming Platform</h3>
     <p align="center">
-  <a href="https://github.com/itzzzme/zenime">
-      <img src="https://img.shields.io/github/stars/itzzzme/zenime" alt="Github Stars">
+  <a href="https://github.com/cd-Crypton/aenime">
+      <img src="https://img.shields.io/github/stars/cd-Crypton/aenime" alt="Github Stars">
     </a>
-      <img src="https://img.shields.io/github/issues/itzzzme/zenime" alt="Github Issues">
-     <a href="https://github.com/itzzzme/zenime">
-      <img src="https://img.shields.io/github/forks/itzzzme/zenime" alt="Github Forks" />
+      <img src="https://img.shields.io/github/issues/cd-Crypton/aenime" alt="Github Issues">
+     <a href="https://github.com/cd-Crypton/aenime">
+      <img src="https://img.shields.io/github/forks/cd-Crypton/aenime" alt="Github Forks" />
     </a>
 </p>
 </p>
 <p align="center">
-    <a href="https://zenime.site">Zenime</a> is an open-source anime streaming service that uses <a href="https://github.com/itzzzme/anime-api">custom</a> API, built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream without any ads.
+    <a href="https://aenime.webbase.workers.dev">Aenime</a> is an open-source anime streaming service that uses <a href="https://github.com/itzzzme/anime-api">custom</a> API, built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream without any ads.
  </p>
 
 <details>
@@ -44,61 +44,6 @@
 
 </details>
 
-## Previews
-
-<div style="text-align: left;">
-  <img src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/homepage.webp" alt="Home Page" style="max-width: 80%;" >
-  <details>
-  <summary style="margin-top:10px">View more screenshots</summary>
-  <br/>
-  AnimeInfo Page
-  <img style="margin-top:10px" src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/animeinfo.webp" alt="AnimeInfo Page" style="max-width: 80%;">
-  <br/>
-  Searchbar
-  <img style="margin-top:10px" src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/searchbar.webp" alt="Searchbar" style="max-width: 50%;">
-  <br/>
-  Character & Voice Actors
-  <img style="margin-top:10px" src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/voiceactors.webp" alt="Character & Voice Actors" style="max-width: 80%;">
-  <br/>
-  Watch Page
-  <img style="margin-top:10px" src="https://raw.githubusercontent.com/itzzzme/zenime/refs/heads/main/public/watchpage.webp" alt="Watch Page" style="max-width: 80%;">
-  <br/>
-  </details>
-</div>
-
-## Installation and Local Development
-
-### 1. Make sure you have node installed on your device
-
-### 2. Run the following code to clone the repository and install all required dependencies
-
-```bash
-git clone https://github.com/itzzzme/zenime.git
-cd zenime
-npm install # or yarn
-```
-
-### 3. Refer the <a href="https://github.com/itzzzme/zenime/blob/main/.env.example">.env.example</a> to set your .env file up
-
-## Start the server
-
-```bash
-npm start # or npm run dev (to run develepment server)
-```
-## Live Deployment
-
-### Vercel
-
-Host your own instance of <a href="https://zenime.site">Zenime</a>  on vercel
-
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/itzzzme/zenime)
-
-### Render
-
-Host your own instance of <a href="https://zenime.site">Zenime</a> on Render.
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/itzzzme/zenime)
-
 ### Pull Requests
 
 - Pull requests are welcomed that address bug fixes, improvements, or new features.
@@ -115,5 +60,5 @@ If you discover any issues or have suggestions for improvement, please open an i
 
  If you like the project feel free to drop a star ✨. Your appreciation means a lot.
 
-<p align="center" style="text-decoration: none;">Made by <a href="https://github.com/itzzzme" tarGET="_blank">itzzzme 
+<p align="center" style="text-decoration: none;">Made by <a href="https://github.com/cd-Crypton" tarGET="_blank">cd-Crypton 
 </a>🫰</p>

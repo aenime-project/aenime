@@ -223,14 +223,14 @@ function Episodelist({
                       className={`flex items-center justify-center rounded-[3px] h-[30px] text-[13.5px] font-medium cursor-pointer group ${
                         item?.filler
                           ? isActive
-                            ? "bg-[#ffbade]"
+                            ? "bg-[#B24B92]"
                             : "bg-gradient-to-r from-[#5a4944] to-[#645a4b]"
                           : ""
                       } md:hover:bg-[#67686F] 
                           md:hover:text-white
                        ${
                          isActive
-                           ? "bg-[#ffbade] text-black"
+                           ? "bg-[#B24B92] text-black"
                            : "bg-[#35373D] text-gray-400"
                        } ${isSearched ? "glow-animation" : ""} `}
                       onClick={() => {
@@ -244,7 +244,7 @@ function Episodelist({
                       <span
                         className={`${
                           item?.filler
-                            ? "text-white md:group-hover:text-[#ffbade]"
+                            ? "text-white md:group-hover:text-[#B24B92]"
                             : ""
                         }`}
                       >
@@ -269,7 +269,7 @@ function Episodelist({
                         ? "bg-[#201F2D] text-gray-400"
                         : "bg-none"
                     } group md:hover:bg-[#2B2A42] ${
-                      isActive ? "text-[#ffbade] bg-[#2B2A42]" : ""
+                      isActive ? "text-[#B24B92] bg-[#2B2A42]" : ""
                     } ${isSearched ? "glow-animation" : ""}`}
                     onClick={() => {
                       if (episodeNumber) {
@@ -281,13 +281,13 @@ function Episodelist({
                   >
                     <p className="text-[14px] font-medium">{index + 1}</p>
                     <div className="w-full flex items-center justify-between gap-x-[5px]">
-                      <h1 className="line-clamp-1 text-[15px] font-light group-hover:text-[#ffbade]">
+                      <h1 className="line-clamp-1 text-[15px] font-light group-hover:text-[#B24B92]">
                         {language === "EN" ? item?.title : item?.japanese_title}
                       </h1>
                       {isActive && (
                         <FontAwesomeIcon
                           icon={faCirclePlay}
-                          className="w-[20px] h-[20px] text-[#ffbade]"
+                          className="w-[20px] h-[20px] text-[#B24B92]"
                         />
                       )}
                     </div>

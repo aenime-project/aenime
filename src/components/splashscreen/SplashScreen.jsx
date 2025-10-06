@@ -58,7 +58,7 @@ function SplashScreen() {
         <nav className="relative w-full">
           <div className="w-fit flex gap-x-12 mx-auto font-semibold max-[780px]:hidden">
             {NAV_LINKS.map((link) => (
-              <Link key={link.to} to={link.to} className="hover:text-[#ffbade]">
+              <Link key={link.to} to={link.to} className="hover:text-[#B24B92]">
                 {link.label}
               </Link>
             ))}
@@ -70,7 +70,7 @@ function SplashScreen() {
               className="p-2 focus:outline-none flex items-center gap-x-2 transition-colors duration-200 group"
             >
               <svg
-                className="w-6 h-6 text-white transition-colors duration-200 max-[520px]:w-5 max-[520px]:h-5 group-hover:text-[#ffbade] group-focus:text-[#ffbade] group-active:text-[#ffbade]"
+                className="w-6 h-6 text-white transition-colors duration-200 max-[520px]:w-5 max-[520px]:h-5 group-hover:text-[#B24B92] group-focus:text-[#B24B92] group-active:text-[#B24B92]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ function SplashScreen() {
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-              <span className="text-white font-semibold transition-colors duration-200 group-hover:text-[#ffbade] group-focus:text-[#ffbade] group-active:text-[#ffbade]">
+              <span className="text-white font-semibold transition-colors duration-200 group-hover:text-[#B24B92] group-focus:text-[#B24B92] group-active:text-[#B24B92]">
                 Menu
               </span>
             </button>
@@ -103,7 +103,7 @@ function SplashScreen() {
                     key={link.to}
                     to={link.to}
                     onClick={() => setIsModalOpen(false)}
-                    className="hover:text-[#ffbade] text-white text-lg"
+                    className="hover:text-[#B24B92] text-white text-lg"
                   >
                     {link.label}
                   </Link>
@@ -119,9 +119,8 @@ function SplashScreen() {
               to="/home"
               className="text-[45px] font-extrabold tracking-wide max-[520px]:text-[38px] max-[520px]:text-center"
             >
-              {logoTitle.slice(0, 3)}
-              <span className="text-[#FFBADE]">{logoTitle.slice(3, 4)}</span>
-              {logoTitle.slice(4)}
+              {logoTitle.slice(0, 2)}
+              <span className="text-[#B24B92]">{logoTitle.slice(2)}</span>
             </Link>
             <div className="w-full flex gap-x-3 mt-6">
               <input
@@ -133,7 +132,7 @@ function SplashScreen() {
                 onKeyDown={handleKeyDown}
               />
               <button
-                className="bg-[#FFBADE] text-white py-3 px-4 rounded-xl font-extrabold"
+                className="bg-[#B24B92] text-white py-3 px-4 rounded-xl font-extrabold"
                 onClick={handleSearchSubmit}
               >
                 <FontAwesomeIcon
@@ -153,7 +152,7 @@ function SplashScreen() {
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
               <Link to="/home" className="max-[520px]:w-full">
-                <div className="bg-[#FFBADE] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
+                <div className="bg-[#B24B92] text-black py-4 px-10 rounded-xl font-bold text-[20px] max-[520px]:text-center max-[520px]:font-medium max-[520px]:text-[17px]">
                   Watch anime
                   <FontAwesomeIcon
                     icon={faCircleArrowRight}

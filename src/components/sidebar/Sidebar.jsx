@@ -70,7 +70,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               >
                 <FontAwesomeIcon
                   icon={item.icon}
-                  className="text-[#ffbade] text-xl font-bold max-[575px]:text-[15px]"
+                  className="text-[#B24B92] text-xl font-bold max-[575px]:text-[15px]"
                 />
                 <p className="text-[15px] max-[575px]:text-[13px]">
                   {item.label}
@@ -87,7 +87,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                       index === 0 ? "rounded-l-[3px]" : "rounded-r-[3px]"
                     } ${
                       language === lang
-                        ? "bg-[#ffbade] text-black"
+                        ? "bg-[#B24B92] text-black"
                         : "bg-gray-600 text-white"
                     } max-[575px]:text-[9px] max-[575px]:py-0`}
                   >
@@ -115,7 +115,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               { name: "Specials", path: "/special" },
               {
                 name: "Join Telegram",
-                path: "https://t.me/zenime_discussion",
+                path: "https://t.me/aenime_discussions",
               },
             ].map((item, index) => (
               <li
@@ -125,7 +125,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               >
                 <Link
                   to={item.path}
-                  className="px-4 hover:text-[#ffbade] hover:cursor-pointer w-fit line-clamp-1"
+                  className="px-4 hover:text-[#B24B92] hover:cursor-pointer w-fit line-clamp-1"
                 >
                   {item.name}
                 </Link>

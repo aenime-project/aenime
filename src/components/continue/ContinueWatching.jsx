@@ -40,8 +40,8 @@ const ContinueWatching = () => {
     <div className="mt-6 max-[1200px]:px-6 max-md:px-0">
       <div className="flex items-center justify-between max-md:pl-4">
         <div className="flex items-center gap-x-2 justify-center">
-          <FaHistory className="text-[#ffbade]" />
-          <h1 className="text-[#ffbade] text-2xl font-bold max-[450px]:text-xl max-[450px]:mb-1 max-[350px]:text-lg">
+          <FaHistory className="text-[#B24B92]" />
+          <h1 className="text-[#B24B92] text-2xl font-bold max-[450px]:text-xl max-[450px]:mb-1 max-[350px]:text-lg">
             Continue Watching
           </h1>
         </div>

@@ -51,15 +51,15 @@ function Topten({ data, className }) {
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
       <div className="flex justify-between items-center max-[350px]:flex-col max-[350px]:gap-y-2 max-[350px]:items-start">
-        <h1 className="font-bold text-2xl text-[#ffbade]">Top 10</h1>
+        <h1 className="font-bold text-2xl text-[#B24B92]">Top 10</h1>
         <ul className="flex justify-between w-fit bg-[#373646] rounded-[4px] text-sm font-bold">
           {["today", "week", "month"].map((period) => (
             <li
               key={period}
               className={`cursor-pointer p-2 px-3 ${
                 activePeriod === period
-                  ? "bg-[#ffbade] text-[#555462]"
-                  : "text-white hover:text-[#ffbade]"
+                  ? "bg-[#B24B92] text-[#555462]"
+                  : "text-white hover:text-[#B24B92]"
               } ${period === "today" ? "rounded-l-[4px]" : ""} ${
                 period === "month" ? "rounded-r-[4px]" : ""
               }`}
@@ -82,7 +82,7 @@ function Topten({ data, className }) {
               <h1
                 className={`font-bold text-2xl ${
                   index < 3
-                    ? "pb-1 text-white border-b-[3px] border-[#ffbade]"
+                    ? "pb-1 text-white border-b-[3px] border-[#B24B92]"
                     : "text-[#777682]"
                 } max-[350px]:hidden`}
               >
@@ -135,7 +135,7 @@ function Topten({ data, className }) {
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link
                     to={`/${item.id}`}
-                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#ffbade] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
+                    className="text-[1em] font-[500] hover:cursor-pointer hover:text-[#B24B92] transform transition-all ease-out line-clamp-1 max-[478px]:line-clamp-2 max-[478px]:text-[14px]"
                     onClick={() => handleNavigate(item.id)}
                   >
                     {language === "EN" ? item.title : item.japanese_title}

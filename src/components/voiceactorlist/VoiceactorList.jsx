@@ -152,7 +152,7 @@ function VoiceactorList({ id, isOpen, onClose }) {
         )}
 
         <div
-          className="bg-white w-[30px] h-[30px] p-2 rounded-full text-3xl absolute z-[1000] top-[-14px] right-[-14px] hover:text-[#FFBADE] cursor-pointer transform transition-all ease-in-out duration-300 flex items-center justify-center hover:bg-[#ffbade] max-md:top-0 max-md:right-0 max-md:rounded-none max-md:rounded-bl-lg max-md:rounded-tr-lg"
+          className="bg-white w-[30px] h-[30px] p-2 rounded-full text-3xl absolute z-[1000] top-[-14px] right-[-14px] hover:text-[#B24B92] cursor-pointer transform transition-all ease-in-out duration-300 flex items-center justify-center hover:bg-[#B24B92] max-md:top-0 max-md:right-0 max-md:rounded-none max-md:rounded-bl-lg max-md:rounded-tr-lg"
           onClick={onClose}
         >
           <button className="text-black mb-[6px] font-semibold">&times;</button>

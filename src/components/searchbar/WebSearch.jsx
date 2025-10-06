@@ -59,7 +59,7 @@ function WebSearch() {
             >
                 <FontAwesomeIcon
                     icon={faMagnifyingGlass}
-                    className="text-lg text-black hover:text-[#ffbade] max-[600px]:text-white max-[600px]:text-2xl max-[575px]:text-xl max-[600px]:mt-[7px]"
+                    className="text-lg text-black hover:text-[#B24B92] max-[600px]:text-white max-[600px]:text-2xl max-[575px]:text-xl max-[600px]:mt-[7px]"
                 />
             </button>
             {searchValue.trim() && isFocused && (

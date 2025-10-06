@@ -64,7 +64,7 @@ function Suggestion({ keyword, className }) {
               />
               <div className="flex flex-col gap-y-[2px]">
                 {item?.title && (
-                  <h1 className="line-clamp-1 leading-5 font-bold text-[15px] group-hover:text-[#ffbade]">
+                  <h1 className="line-clamp-1 leading-5 font-bold text-[15px] group-hover:text-[#B24B92]">
                     {item.title || "N/A"}
                   </h1>
                 )}
@@ -79,7 +79,7 @@ function Suggestion({ keyword, className }) {
                       {item.releaseDate || "N/A"}
                     </p>
                     <span className="dot"></span>
-                    <p className="leading-5 text-[13px] font-medium group-hover:text-[#ffbade]">
+                    <p className="leading-5 text-[13px] font-medium group-hover:text-[#B24B92]">
                       {item.showType || "N/A"}
                     </p>
                     <span className="dot"></span>
@@ -93,7 +93,7 @@ function Suggestion({ keyword, className }) {
           ))}
           {!loading && hasFetched && (
             <Link
-              className="w-full flex py-4 justify-center items-center bg-[#ffbade]"
+              className="w-full flex py-4 justify-center items-center bg-[#B24B92]"
               to={`/search?keyword=${encodeURIComponent(keyword)}`}
             >
               <div className="flex w-fit items-center gap-x-2">
