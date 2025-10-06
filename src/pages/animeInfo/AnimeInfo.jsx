@@ -303,14 +303,19 @@ function AnimeInfo({ random = false }) {
               { label: "Duration", value: info?.Duration },
               { label: "Status", value: info?.Status },
               { label: "MAL Score", value: info?.["MAL Score"] },
-            ].map(({ label, value }, index) => (
-              <InfoItem
-                key={index}
-                label={label}
-                value={value}
-                isProducer={false}
-              />
-            ))}
+            ].map(({ label, value }, index) => {
+              let formattedValue = value;
+              if (typeof value === "string") {
+                formattedValue = value.replace(/-/g, " ");
+              } else if (Array.isArray(value)) {
+                formattedValue = value.map((v) =>
+                  typeof v === "string" ? v.replace(/-/g, " ") : v
+                );
+              }
+
+              return <InfoItem key={index} label={label} value={formattedValue} />;
+            })}
+
             {info?.Genres && (
               <div className="flex gap-x-2 py-2 custom-xl:border-t custom-xl:border-b custom-xl:border-white/20 max-[1200px]:border-none">
                 <p>Genres:</p>
@@ -330,9 +335,18 @@ function AnimeInfo({ random = false }) {
             {[
               { label: "Studios", value: info?.Studios },
               { label: "Producers", value: info?.Producers },
-            ].map(({ label, value }, index) => (
-              <InfoItem key={index} label={label} value={value} />
-            ))}
+            ].map(({ label, value }, index) => {
+              let formattedValue = value;
+              if (typeof value === "string") {
+                formattedValue = value.replace(/-/g, " ");
+              } else if (Array.isArray(value)) {
+                formattedValue = value.map((v) =>
+                  typeof v === "string" ? v.replace(/-/g, " ") : v
+                );
+              }
+              
+              return <InfoItem key={index} label={label} value={formattedValue} />;
+            })}
             <p className="text-[14px] mt-4 custom-xl:hidden">
               {`${website_name} is the best site to watch `}
               <span className="font-bold">{title}</span>
