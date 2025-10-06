@@ -273,14 +273,14 @@ function AnimeInfo({ random = false }) {
             <div className="flex gap-x-4 items-center mt-4 max-[575px]:w-full max-[575px]:justify-center max-[320px]:hidden">
               <img
                 src="/luffy.gif"
-                alt="Share Anime"
+                alt="Luffy says"
                 className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px]"
               />
               <div className="flex flex-col w-fit">
                 <p className="text-[15px] font-bold text-[#B24B92]">
-                  Share Anime
+                  Luffy says
                 </p>
-                <p className="text-[16px] text-white">to your friends</p>
+                <p className="text-[16px] text-white">Share this website to your friends!</p>
               </div>
             </div>
           </div>

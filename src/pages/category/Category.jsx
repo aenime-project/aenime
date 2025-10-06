@@ -56,12 +56,12 @@ function Category({ path, label }) {
       <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
         <img
           src="/luffy.gif"
-          alt="Share Anime"
+          alt="Luffy says"
           className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px] max-[575px]:hidden"
         />
         <div className="flex flex-col w-fit">
-          <p className="text-[15px] font-bold text-[#B24B92]">Share Anime</p>
-          <p className="text-[16px] text-white">to your friends</p>
+          <p className="text-[15px] font-bold text-[#B24B92]">Luffy says</p>
+          <p className="text-[16px] text-white">Share this website to your friends!</p>
         </div>
       </div>
 
