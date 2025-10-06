@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://aenime.webbase.workers.dev/sitemap.xml
+Sitemap: https://aenime.qzz.io/sitemap.xml

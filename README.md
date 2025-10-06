@@ -1,6 +1,6 @@
 <p align="center">
   <div align="center">
-    <a href="https://aenime.webbase.workers.dev/">
+    <a href="https://aenime.qzz.io/">
       <img alt="AnimeHi" src="https://raw.githubusercontent.com/cd-Crypton/aenime/refs/heads/main/public/logo.png" width="220"/>
     </a>
   </div>
@@ -16,7 +16,7 @@
 </p>
 </p>
 <p align="center">
-    <a href="https://aenime.webbase.workers.dev">Aenime</a> is an open-source anime streaming service that uses <a href="https://github.com/itzzzme/anime-api">custom</a> API, built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream without any ads.
+    <a href="https://aenime.qzz.io">Aenime</a> is an open-source anime streaming service that uses <a href="https://github.com/itzzzme/anime-api">custom</a> API, built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream without any ads.
  </p>
 
 <details>
