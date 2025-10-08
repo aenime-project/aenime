@@ -1,0 +1,15 @@
+# Ignore version control and configs
+.git
+.github/
+.env
+.env.*
+*.log
+
+# Dependency & build artifacts
+node_modules/
+
+# Other
+dist/
+
+# Rsync
+.rsycnignore

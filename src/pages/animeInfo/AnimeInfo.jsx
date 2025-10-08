@@ -304,6 +304,7 @@ function AnimeInfo({ random = false }) {
               { label: "Status", value: info?.Status },
               { label: "MAL Score", value: info?.["MAL Score"] },
             ].map(({ label, value }, index) => {
+              // Replace dashes with spaces
               let formattedValue = value;
               if (typeof value === "string") {
                 formattedValue = value.replace(/-/g, " ");
@@ -336,6 +337,7 @@ function AnimeInfo({ random = false }) {
               { label: "Studios", value: info?.Studios },
               { label: "Producers", value: info?.Producers },
             ].map(({ label, value }, index) => {
+              // Replace dashes with spaces
               let formattedValue = value;
               if (typeof value === "string") {
                 formattedValue = value.replace(/-/g, " ");
