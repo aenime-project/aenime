@@ -44,6 +44,36 @@
 
 </details>
 
+## Local Development
+
+### 1. Make sure you have node installed on your device
+
+### 2. Run the following code to clone the repository and install all required dependencies
+
+```bash
+git clone https://github.com/cd-Crypton/aenime.git
+cd aenime
+npm install # or yarn
+```
+
+### 3. Refer the <a href="https://github.com/itzzzme/zenime/blob/main/.env.example">.env.example</a> to set your own .env file.
+
+## Start the server
+
+```bash
+npm start # or npm run dev or wrangler dev
+```
+
+## Live Development
+
+### Cloudflare (Worker)
+
+Host your own instance of <a href="aenime.qzz.io">Aenime</a>  on Cloudflare.
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cd-Crypton/aenime)
+
+Ignore 'Configure Secrets' when deploying the Web Application, just follow #3 and create your own .env file.
+
 ### Pull Requests
 
 - Pull requests are welcomed that address bug fixes, improvements, or new features.
@@ -60,5 +90,5 @@ If you discover any issues or have suggestions for improvement, please open an i
 
  If you like the project feel free to drop a star ✨. Your appreciation means a lot.
 
-<p align="center" style="text-decoration: none;">Made by <a href="https://github.com/cd-Crypton" tarGET="_blank">cd-Crypton 
-</a>🫰</p>
+<p align="center" style="text-decoration: none;">Made by <a href="https://github.com/itzzzme" tarGET="_blank">itzzzme</a>and modified by <a href="https://github.com/cd-Crypton" target="_blank">cd-Crypton</a>
+</p>
