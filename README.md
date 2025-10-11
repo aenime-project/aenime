@@ -90,5 +90,5 @@ If you discover any issues or have suggestions for improvement, please open an i
 
  If you like the project feel free to drop a star ✨. Your appreciation means a lot.
 
-<p align="center" style="text-decoration: none;">Made by <a href="https://github.com/itzzzme" tarGET="_blank">itzzzme</a>and modified by <a href="https://github.com/cd-Crypton" target="_blank">cd-Crypton</a>
+<p align="center" style="text-decoration: none;">Made by <a href="https://github.com/itzzzme" tarGET="_blank">itzzzme</a> and modified by <a href="https://github.com/cd-Crypton" target="_blank">cd-Crypton</a>
 </p>
