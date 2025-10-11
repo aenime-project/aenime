@@ -173,7 +173,7 @@ function SplashScreen() {
         </div>
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">
-        © {logoTitle} All rights reserved.
+        © {logoTitle} All rights reserved. <a href="/donate" className="text-blue-400 hover:underline ml-2">Support Us</a>
       </div>
     </div>
   );

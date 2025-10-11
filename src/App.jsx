@@ -15,6 +15,7 @@ import Search from "./pages/search/Search";
 import Watch from "./pages/watch/Watch";
 import Producer from "./components/producer/Producer";
 import SplashScreen from "./components/splashscreen/SplashScreen";
+import DonatePage from "./pages/donate/donate";
 
 function App() {
   const location = useLocation();
@@ -62,6 +63,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             {/* Catch-all route for 404 */}
             <Route path="*" element={<Error error="404" />} />
+            <Route path="/donate" element={<DonatePage />} />
           </Routes>
           {!isSplashScreen && <Footer />}
         </main>

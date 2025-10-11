@@ -51,7 +51,7 @@ function Footer() {
             files shown by the video providers.
           </p>
           <p className="text-[#9B9BA3] max-md:text-[14px]">
-            © {website_name}. All rights reserved.
+            © {website_name}. All rights reserved. <a href="/donate" className="text-blue-400 hover:underline ml-2">Support Us</a>
           </p>
         </div>
       </div>

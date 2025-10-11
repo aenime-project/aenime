@@ -160,16 +160,21 @@ export const useWatch = (animeId, initialEpisodeId) => {
 
         const savedServerName = localStorage.getItem("server_name");
         const savedServerType = localStorage.getItem("server_type");
-
-        const initialServer =
+        
+        // Try to restore user preference first
+        let initialServer =
           serversList.find(s => s.serverName === savedServerName && s.type === savedServerType) ||
-          serversList.find(s => s.serverName === savedServerName) ||
-          serversList.find(
-            s =>
-              s.type === savedServerType &&
-              ["HD-1", "HD-2", "HD-3", "HD-4", "Vidstreaming", "Vidcloud", "DouVideo"].includes(s.serverName)
-          ) ||
-          serversList[0];
+          serversList.find(s => s.serverName === savedServerName);
+        
+        // If none saved or invalid, prioritize SUB HD-2
+        if (!initialServer) {
+          initialServer =
+            serversList.find(s => s.serverName === "HD-2" && s.type === "sub") ||
+            serversList.find(s => s.serverName === "Vidstreaming" && s.type === "sub") ||
+            serversList.find(s => s.serverName === "HD-2") ||
+            serversList.find(s => s.serverName === "HD-4" && s.type === "sub") ||
+            serversList[0];
+        }
 
         setServers(serversList);
         setActiveServerType(initialServer?.type);
