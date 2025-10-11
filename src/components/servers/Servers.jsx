@@ -58,8 +58,7 @@ function Servers({
               </span>
             </p>
             <p className="leading-5 text-[14px] font-medium text-center">
-              If the current server doesn&apos;t work, please try other servers
-              beside.
+              If the current server doesn&apos;t work, please try other servers then hit reload.
             </p>
           </div>
           <div className="bg-[#201F31] flex flex-col max-[600px]:h-full">

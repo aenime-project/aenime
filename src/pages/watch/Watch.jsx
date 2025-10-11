@@ -23,6 +23,16 @@ import Voiceactor from "@/src/components/voiceactor/Voiceactor";
 import Watchcontrols from "@/src/components/watchcontrols/Watchcontrols";
 import useWatchControl from "@/src/hooks/useWatchControl";
 
+// Add this logo constant at the top of your Watch component, after the imports
+const IFRAME_LOGO_HTML = `
+  <p style="display: flex; gap: 7px; align-items: center; background-color:#1F2020; padding:5px;padding-inline:7px; border-radius:5px">
+    <b style="color: #B24B92;">Powered by</b>
+    <span style="font-size: 14px;">
+        Ae<span style="color: #B24B92;">nime</span>
+    </span>
+  </p>
+`;
+
 function Tag({ bgColor, index, icon, text }) {
     return (
       <div
@@ -50,7 +60,6 @@ export default function Watch() {
   const isFirstSet = useRef(true);
   const [showNextEpisodeSchedule, setShowNextEpisodeSchedule] = useState(true);
   const {
-    // error,
     buffering,
     streamInfo,
     animeInfo,
@@ -73,6 +82,7 @@ export default function Watch() {
     setActiveServerId,
     servers,
     serverLoading,
+    activeServerName,
   } = useWatch(animeId, initialEpisodeId);
   const {
     autoPlay,
@@ -82,6 +92,12 @@ export default function Watch() {
     autoNext,
     setAutoNext,
   } = useWatchControl();
+
+  // Add this function to check if current server uses iframe
+  const isIframeServer = () => {
+    const iframeServers = ["hd-1", "hd-4", "vidstreaming", "vidcloud", "douvideo", "megaplay", "vidwish"];
+    return iframeServers.includes(activeServerName?.toLowerCase());
+  };
 
   useEffect(() => {
     if (!episodes || episodes.length === 0) return;
@@ -107,7 +123,6 @@ export default function Watch() {
     } else {
       navigate(newUrl);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [episodeId, animeId, navigate, episodes]);
 
   // Update document title
@@ -126,28 +141,6 @@ export default function Watch() {
       navigate(`/${animeId}`);
     }
   }, [streamInfo, episodeId, animeId, totalEpisodes, navigate]);
-
-  // useEffect(() => {
-  //   const adjustHeight = () => {
-  //     if (window.innerWidth > 1200) {
-  //       const player = document.querySelector(".player");
-  //       const episodes = document.querySelector(".episodes");
-  //       if (player && episodes) {
-  //         episodes.style.height = `${player.clientHeight}px`;
-  //       }
-  //     } else {
-  //       const episodes = document.querySelector(".episodes");
-  //       if (episodes) {
-  //         episodes.style.height = "auto";
-  //       }
-  //     }
-  //   };
-  //   adjustHeight();
-  //   window.addEventListener("resize", adjustHeight);
-  //   return () => {
-  //     window.removeEventListener("resize", adjustHeight);
-  //   };
-  // },[]);
 
   useEffect(() => {
     let ro = null;
@@ -235,6 +228,7 @@ export default function Watch() {
       },
     ]);
   }, [animeId, animeInfo]);
+
   return (
     <div className="w-full h-fit flex flex-col justify-center items-center relative">
       <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0">
@@ -289,30 +283,55 @@ export default function Watch() {
             <div className="player w-full h-fit bg-black flex flex-col">
               <div className="w-full relative h-[480px] max-[1400px]:h-[40vw] max-[1200px]:h-[48vw] max-[1024px]:h-[58vw] max-[600px]:h-[65vw]">
                 {!buffering ? (
-                  <Player
-                    streamUrl={streamUrl}
-                    subtitles={subtitles}
-                    intro={intro}
-                    outro={outro}
-                    thumbnail={thumbnail}
-                    autoSkipIntro={autoSkipIntro}
-                    autoPlay={autoPlay}
-                    autoNext={autoNext}
-                    episodeId={episodeId}
-                    episodes={episodes}
-                    playNext={(id) => setEpisodeId(id)}
-                    animeInfo={animeInfo}
-                    episodeNum={activeEpisodeNum}
-                    streamInfo={streamInfo}
-                  />
+                  isIframeServer() ? (
+                    // Iframe player for iframe-based servers with logo overlay
+                    <div className="relative w-full h-full">
+                      <iframe
+                        src={streamUrl}
+                        width="100%"
+                        height="100%"
+                        frameBorder="0"
+                        scrolling="no"
+                        allowFullScreen
+                        className="w-full h-full"
+                        title={`${animeInfo?.title} - Episode ${activeEpisodeNum}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      />
+                      {/* Logo Overlay */}
+                      <div 
+                        className="absolute top-2 right-2 opacity-100 transition-opacity duration-500 ease-out z-10"
+                        dangerouslySetInnerHTML={{ __html: IFRAME_LOGO_HTML }}
+                      />
+                    </div>
+                  ) : (
+                    // Regular video player for other servers
+                    <Player
+                      streamUrl={streamUrl}
+                      subtitles={subtitles}
+                      intro={intro}
+                      outro={outro}
+                      thumbnail={thumbnail}
+                      autoSkipIntro={autoSkipIntro}
+                      autoPlay={autoPlay}
+                      autoNext={autoNext}
+                      episodeId={episodeId}
+                      episodes={episodes}
+                      playNext={(id) => setEpisodeId(id)}
+                      animeInfo={animeInfo}
+                      episodeNum={activeEpisodeNum}
+                      streamInfo={streamInfo}
+                    />
+                  )
                 ) : (
                   <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
                     <BouncingLoader />
                   </div>
                 )}
-                <p className="text-center underline font-medium text-[15px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                  {!buffering && !streamInfo ? (
-                    servers ? (
+                
+                {/* Error message - only show for non-iframe servers when there's no stream info */}
+                {!buffering && !streamInfo && !isIframeServer() && (
+                  <p className="text-center underline font-medium text-[15px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                    {servers ? (
                       <>
                         Probably this server is down, try other servers
                         <br />
@@ -324,12 +343,13 @@ export default function Watch() {
                         <br />
                         Either reload or try again after sometime
                       </>
-                    )
-                  ) : null}
-                </p>
+                    )}
+                  </p>
+                )}
               </div>
 
-              {!buffering && (
+              {/* Only show watch controls for non-iframe servers */}
+              {!buffering && !isIframeServer() && (
                 <Watchcontrols
                   autoPlay={autoPlay}
                   setAutoPlay={setAutoPlay}
@@ -343,6 +363,7 @@ export default function Watch() {
                   onButtonClick={(id) => setEpisodeId(id)}
                 />
               )}
+
               <Servers
                 servers={servers}
                 activeEpisodeNum={activeEpisodeNum}
@@ -350,6 +371,7 @@ export default function Watch() {
                 setActiveServerId={setActiveServerId}
                 serverLoading={serverLoading}
               />
+
               {seasons?.length > 0 && (
                 <div className="flex flex-col gap-y-2 bg-[#11101A] p-4">
                   <h1 className="w-fit text-lg max-[478px]:text-[18px] font-semibold">
@@ -386,6 +408,7 @@ export default function Watch() {
                   </div>
                 </div>
               )}
+
               {nextEpisodeSchedule?.nextEpisodeSchedule &&
                 showNextEpisodeSchedule && (
                   <div className="p-4">

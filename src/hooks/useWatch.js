@@ -33,6 +33,10 @@ export const useWatch = (animeId, initialEpisodeId) => {
   const isServerFetchInProgress = useRef(false);
   const isStreamFetchInProgress = useRef(false);
 
+  // Get environment variables
+  const MEGAPLAY_BASE_URL = import.meta.env.VITE_BASE_IFRAME_URL;
+  const VIDWISH_BASE_URL = import.meta.env.VITE_BASE_IFRAME_URL_2;
+
   useEffect(() => {
     setEpisodes(null);
     setEpisodeId(null);
@@ -123,21 +127,46 @@ export const useWatch = (animeId, initialEpisodeId) => {
       try {
         const data = await getServers(animeId, episodeId, { signal: controller.signal });
         if (!mounted) return;
-
+        
+        // Use case-insensitive filtering
+        const allowedServers = ["hd-1", "hd-2", "vidstreaming", "vidcloud", "douvideo"];
         const filteredServers = data?.filter(
-          (server) =>
-            server.serverName === "HD-1" ||
-            server.serverName === "HD-2" ||
-            // server.serverName === "HD-3" ||
-            server.serverName === "Vidstreaming" ||
-            server.serverName === "Vidcloud" ||
-            server.serverName === "DouVideo"
+          (server) => allowedServers.includes(server.serverName.toLowerCase())
         ) || [];
 
         let serversList = [...filteredServers];
+        
+        // Add MegaPlay and VidWish servers
+        serversList.push(
+          {
+            type: "sub",
+            data_id: `megaplay_sub_${episodeId}`,
+            server_id: "megaplay",
+            serverName: "MegaPlay",
+          },
+          {
+            type: "dub", 
+            data_id: `megaplay_dub_${episodeId}`,
+            server_id: "megaplay",
+            serverName: "MegaPlay",
+          },
+          {
+            type: "sub",
+            data_id: `vidwish_sub_${episodeId}`,
+            server_id: "vidwish", 
+            serverName: "VidWish",
+          },
+          {
+            type: "dub",
+            data_id: `vidwish_dub_${episodeId}`,
+            server_id: "vidwish",
+            serverName: "VidWish",
+          }
+        );
 
+        // Your existing HD-4 logic...
         if (serversList.some((s) => s.type === "sub")) {
-          if (!serversList.some((s) => s.serverName === "HD-4" && s.type === "sub")) {
+          if (!serversList.some((s) => s.serverName.toLowerCase() === "hd-4" && s.type === "sub")) {
             serversList.push({
               type: "sub",
               data_id: "69696968",
@@ -146,11 +175,11 @@ export const useWatch = (animeId, initialEpisodeId) => {
             });
           }
         }
-
+        
         if (serversList.some((s) => s.type === "dub")) {
-          if (!serversList.some((s) => s.serverName === "HD-4" && s.type === "dub")) {
+          if (!serversList.some((s) => s.serverName.toLowerCase() === "hd-4" && s.type === "dub")) {
             serversList.push({
-              type: "dub",
+              type: "dub", 
               data_id: "96969696",
               server_id: "42",
               serverName: "HD-4",
@@ -163,16 +192,18 @@ export const useWatch = (animeId, initialEpisodeId) => {
         
         // Try to restore user preference first
         let initialServer =
-          serversList.find(s => s.serverName === savedServerName && s.type === savedServerType) ||
-          serversList.find(s => s.serverName === savedServerName);
+          serversList.find(s => s.serverName.toLowerCase() === savedServerName?.toLowerCase() && s.type === savedServerType) ||
+          serversList.find(s => s.serverName.toLowerCase() === savedServerName?.toLowerCase());
         
-        // If none saved or invalid, prioritize SUB HD-2
+        // If none saved or invalid, prioritize SUB HD-2, then MegaPlay, then VidWish
         if (!initialServer) {
-          initialServer =
-            serversList.find(s => s.serverName === "HD-2" && s.type === "sub") ||
-            serversList.find(s => s.serverName === "Vidstreaming" && s.type === "sub") ||
-            serversList.find(s => s.serverName === "HD-2") ||
-            serversList.find(s => s.serverName === "HD-4" && s.type === "sub") ||
+          initialServer = 
+            serversList.find(s => s.serverName.toLowerCase() === "hd-2" && s.type === "sub") ||
+            serversList.find(s => s.serverName.toLowerCase() === "megaplay" && s.type === "sub") ||
+            serversList.find(s => s.serverName.toLowerCase() === "vidwish" && s.type === "sub") ||
+            serversList.find(s => s.serverName.toLowerCase() === "vidstreaming" && s.type === "sub") ||
+            serversList.find(s => s.serverName.toLowerCase() === "hd-2") ||
+            serversList.find(s => s.serverName.toLowerCase() === "hd-4" && s.type === "sub") ||
             serversList[0];
         }
 
@@ -206,19 +237,40 @@ export const useWatch = (animeId, initialEpisodeId) => {
   // Fetch stream info only when episodeId, activeServerId, and servers are ready
   useEffect(() => {
     if (
-      !episodeId ||
-      !activeServerId ||
-      !servers ||
-      isServerFetchInProgress.current ||
-      isStreamFetchInProgress.current
-    )
-      return;
-    const iframeServers = ["hd-1", "hd-4", "vidstreaming", "vidcloud", "douvideo"];
+      !episodeId || !activeServerId || !servers || 
+      isServerFetchInProgress.current || isStreamFetchInProgress.current
+    ) return;
+
+    const iframeServers = ["hd-1", "hd-4", "vidstreaming", "vidcloud", "douvideo", "megaplay", "vidwish"];
 
     if (iframeServers.includes(activeServerName?.toLowerCase()) && !serverLoading) {
       setBuffering(false);
-      return;
+      
+      // Set stream URL for iframe servers
+      const serverNameLower = activeServerName.toLowerCase();
+      
+      if (serverNameLower === "megaplay" && MEGAPLAY_BASE_URL) {
+        const streamUrl = `${MEGAPLAY_BASE_URL}/${episodeId}/${activeServerType}`;
+        setStreamUrl(streamUrl);
+      } 
+      else if (serverNameLower === "vidwish" && VIDWISH_BASE_URL) {
+        const streamUrl = `${VIDWISH_BASE_URL}/${episodeId}/${activeServerType}`;
+        setStreamUrl(streamUrl);
+      }
+      else if (serverNameLower === "hd-1" || serverNameLower === "hd-4") {
+        // For HD-1 and HD-4, you might need to construct URLs or keep existing logic
+        // If they also need special URL construction, add it here
+        // For now, they'll rely on the existing getStreamInfo flow
+        console.log(`HD server selected: ${activeServerName}, will use getStreamInfo`);
+      }
+      
+      // For other iframe servers, return early but don't set streamUrl
+      // They will be handled by the fetchStreamInfo below
+      if (["megaplay", "vidwish"].includes(serverNameLower)) {
+        return;
+      }
     }
+
     const fetchStreamInfo = async () => {
       isStreamFetchInProgress.current = true;
       setBuffering(true);
@@ -226,20 +278,21 @@ export const useWatch = (animeId, initialEpisodeId) => {
         const server = servers.find((srv) => srv.data_id === activeServerId);
         if (server) {
           const data = await getStreamInfo(
-            animeId,
-            episodeId,
-            server.serverName.toLowerCase()==="hd-3"?"hd-1":server.serverName.toLowerCase(),
+            animeId, 
+            episodeId, 
+            server.serverName.toLowerCase() === "hd-3" ? "hd-1" : server.serverName.toLowerCase(),
             server.type.toLowerCase()
           );
           setStreamInfo(data);
           setStreamUrl(data?.streamingLink?.link?.file || null);
           setIntro(data?.streamingLink?.intro || null);
           setOutro(data?.streamingLink?.outro || null);
-          const subtitles =
-            data?.streamingLink?.tracks
-              ?.filter((track) => track.kind === "captions")
-              .map(({ file, label }) => ({ file, label })) || [];
+          
+          const subtitles = data?.streamingLink?.tracks
+            ?.filter((track) => track.kind === "captions")
+            .map(({ file, label }) => ({ file, label })) || [];
           setSubtitles(subtitles);
+          
           const thumbnailTrack = data?.streamingLink?.tracks?.find(
             (track) => track.kind === "thumbnails" && track.file
           );
@@ -255,8 +308,9 @@ export const useWatch = (animeId, initialEpisodeId) => {
         isStreamFetchInProgress.current = false;
       }
     };
+    
     fetchStreamInfo();
-  }, [episodeId, activeServerId, servers]);
+  }, [episodeId, activeServerId, servers, activeServerName, activeServerType, MEGAPLAY_BASE_URL, VIDWISH_BASE_URL]);
 
   return {
     error,

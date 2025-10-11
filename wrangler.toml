@@ -1,6 +1,6 @@
 name = "aenime"
 main = "src/worker.js"
-compatibility_date = "2025-06-01"
+compatibility_date = "2025-10-01"
 
 [assets]
 directory = "dist"

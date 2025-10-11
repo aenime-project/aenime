@@ -13,3 +13,6 @@ dist/
 
 # Rsync
 .rsycnignore
+
+# Readme
+README.md
