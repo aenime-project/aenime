@@ -4,7 +4,7 @@
 import Hls from "hls.js";
 import { useEffect, useRef, useState } from "react";
 import Artplayer from "artplayer";
-import artplayerPluginChapter from "./artPlayerPluginChaper";
+import artplayerPluginChapter from "./artPlayerPluginChapter";
 import autoSkip from "./autoSkip";
 import artplayerPluginVttThumbnail from "./artPlayerPluginVttThumbnail";
 import {
@@ -104,23 +104,35 @@ export default function Player({
   const playM3u8 = (video, url, art) => {
     if (Hls.isSupported()) {
       if (art.hls) art.hls.destroy();
-      const hls = new Hls();
+
+      const hls = new Hls({
+        startLevel: -1,
+      });
+
       hls.loadSource(url);
       hls.attachMedia(video);
+
       art.hls = hls;
 
-      art.on("destroy", () => hls.destroy());
-
-      video.addEventListener("timeupdate", () => {
-        const currentTime = Math.round(video.currentTime);
-        const duration = Math.round(video.duration);
-        if (duration > 0 && currentTime >= duration) {
-          art.pause();
-          if (currentEpisodeIndex < episodes?.length - 1 && autoNext) {
-            playNext(episodes[currentEpisodeIndex + 1].id.match(/ep=(\d+)/)?.[1]);
-          }
+      hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+        const level360p = data.levels.findIndex(level => level.height === 360);
+        if (level360p !== -1) {
+          hls.currentLevel = level360p;
         }
-      });
+
+        art.on("destroy", () => hls.destroy());
+
+        video.addEventListener("timeupdate", () => {
+          const currentTime = Math.round(video.currentTime);
+          const duration = Math.round(video.duration);
+          if (duration > 0 && currentTime >= duration) {
+            art.pause();
+            if (currentEpisodeIndex < episodes?.length - 1 && autoNext) {
+              playNext(episodes[currentEpisodeIndex + 1].id.match(/ep=(\d+)/)?.[1]);
+            }
+          }
+        });
+      }); // ✅ closes hls.on
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = url;
       video.addEventListener("timeupdate", () => {
@@ -304,6 +316,7 @@ export default function Player({
             getName: (level) => level.height + "P",
             title: "Quality",
             auto: "Auto",
+            default: "360P",
           },
         }),
         artplayerPluginUploadSubtitle(),

@@ -299,7 +299,7 @@ export default function Watch() {
                       />
                       {/* Logo Overlay */}
                       <div 
-                        className="absolute top-2 right-2 opacity-100 transition-opacity duration-500 ease-out z-10"
+                        className="absolute top-2 right-2 opacity-1 transition-opacity duration-500 ease-out z-10"
                         dangerouslySetInnerHTML={{ __html: IFRAME_LOGO_HTML }}
                       />
                     </div>
