@@ -37,7 +37,7 @@ const Trending = ({ trending }) => {
                 className="text-center flex text-[18px] justify-center items-center"
               >
                 <div className="w-full h-auto pb-[115%] relative inline-block overflow-hidden max-[575px]:pb-[150%]">
-                  <div className="absolute left-0 top-0 bottom-0 overflow-hidden w-[40px] text-center font-semibold bg-[#201F31] max-[575px]:top-0 max-[575px]:h-[30px] max-[575px]:z-[9] max-[575px]:bg-white">
+                  <div className="absolute left-0 top-0 bottom-0 overflow-hidden w-[40px] text-center font-semibold bg-[#121212] max-[575px]:top-0 max-[575px]:h-[30px] max-[575px]:z-[9] max-[575px]:bg-white">
                     <span className="absolute left-0 right-0 bottom-0 text-[24px] leading-[1.1em] text-center z-[9] transform -rotate-90 max-[575px]:transform max-[575px]:rotate-0 max-[575px]:text-[#111] max-[575px]:text-[18px] max-[575px]:leading-[30px]">
                       {item.number}
                     </span>

@@ -22,6 +22,17 @@ function Home() {
         <Spotlight spotlights={homeInfo.spotlights} />
         <ContinueWatching />
         <Trending trending={homeInfo.trending} />
+        <div className="w-full flex flex-col px-4">
+          <div>
+            <CategoryCard
+              label="Latest Episode"
+              data={homeInfo.latest_episode}
+              className={"mt-[60px]"}
+              path="recently-updated"
+              limit={12}
+            />
+          </div>
+        </div>
         <div className="mt-10 flex gap-6 max-[1200px]:px-4 max-[1200px]:grid max-[1200px]:grid-cols-2 max-[1200px]:mt-12 max-[1200px]:gap-y-10 max-[680px]:grid-cols-1">
           <Cart
             label="Top Airing"
@@ -46,13 +57,6 @@ function Home() {
         </div>
         <div className="w-full grid grid-cols-[minmax(0,75%),minmax(0,25%)] gap-x-6 max-[1200px]:flex flex-col max-[1200px]:px-4">
           <div>
-            <CategoryCard
-              label="Latest Episode"
-              data={homeInfo.latest_episode}
-              className={"mt-[60px]"}
-              path="recently-updated"
-              limit={12}
-            />
             <CategoryCard
               label={`New On ${website_name}`}
               data={homeInfo.recently_added}

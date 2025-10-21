@@ -31,7 +31,7 @@ function Suggestion({ keyword, className }) {
 
   return (
     <div
-      className={`bg-[#2d2b44] ${className} flex ${
+      className={`bg-[#262626] ${className} flex ${
         loading ? "justify-center py-7" : "justify-start"
       } ${!suggestion ? "p-3" : "justify-start"} items-center`}
       style={{ boxShadow: "0 20px 20px rgba(0, 0, 0, .3)" }}

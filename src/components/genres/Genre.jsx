@@ -24,7 +24,7 @@ function Genre({ data }) {
       <div className="bg-[#373646] py-6 px-4 mt-6 max-[478px]:bg-transparent max-[478px]:px-0">
         <div className="grid grid-cols-3 grid-rows-2 gap-x-4 gap-y-3 w-full max-[478px]:flex max-[478px]:flex-wrap max-[478px]:gap-2">
           {data &&
-            (showAll ? data : data.slice(0, 24)).map((item, index) => {
+            data.map((item, index) => {
               const textColor = colors[index % colors.length];
               return (
                 <Link
@@ -40,12 +40,6 @@ function Genre({ data }) {
               );
             })}
         </div>
-        <button
-          className="w-full bg-[#555462d3] py-3 mt-4 hover:bg-[#555462] rounded-md font-bold transform transition-all ease-out"
-          onClick={toggleGenres}
-        >
-          {showAll ? "Show less" : "Show more"}
-        </button>
       </div>
     </div>
   );

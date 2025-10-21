@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 function Error({ error }) {
     const navigate = useNavigate();
     return (
-        <div className="bg-[#201F31] w-full h-screen flex justify-center items-center">
+        <div className="bg-[#121212] w-full h-screen flex justify-center items-center">
             <div className="flex flex-col w-fit h-fit items-center justify-center">
                 <img src="https://s1.gifyu.com/images/SBlOe.png" alt="" className="w-[300px] h-[300px] max-[500px]:w-[200px] max-[500px]:h-[200px]" />
                 <h1 className="text-white text-[35px] leading-5 mt-7">{error === "404" ? "404 Error" : "Error"}</h1>

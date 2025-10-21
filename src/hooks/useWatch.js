@@ -129,7 +129,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
         if (!mounted) return;
         
         // Use case-insensitive filtering
-        const allowedServers = ["hd-1", "hd-2", "vidstreaming", "vidcloud", "douvideo"];
+        const allowedServers = ["hd-2", "vidstreaming", "vidcloud", "douvideo"];
         const filteredServers = data?.filter(
           (server) => allowedServers.includes(server.serverName.toLowerCase())
         ) || [];
@@ -164,29 +164,6 @@ export const useWatch = (animeId, initialEpisodeId) => {
           }
         );
 
-        // Your existing HD-4 logic...
-        if (serversList.some((s) => s.type === "sub")) {
-          if (!serversList.some((s) => s.serverName.toLowerCase() === "hd-4" && s.type === "sub")) {
-            serversList.push({
-              type: "sub",
-              data_id: "69696968",
-              server_id: "41",
-              serverName: "HD-4",
-            });
-          }
-        }
-        
-        if (serversList.some((s) => s.type === "dub")) {
-          if (!serversList.some((s) => s.serverName.toLowerCase() === "hd-4" && s.type === "dub")) {
-            serversList.push({
-              type: "dub", 
-              data_id: "96969696",
-              server_id: "42",
-              serverName: "HD-4",
-            });
-          }
-        }
-
         const savedServerName = localStorage.getItem("server_name");
         const savedServerType = localStorage.getItem("server_type");
         
@@ -203,7 +180,6 @@ export const useWatch = (animeId, initialEpisodeId) => {
             serversList.find(s => s.serverName.toLowerCase() === "vidwish" && s.type === "sub") ||
             serversList.find(s => s.serverName.toLowerCase() === "vidstreaming" && s.type === "sub") ||
             serversList.find(s => s.serverName.toLowerCase() === "hd-2") ||
-            serversList.find(s => s.serverName.toLowerCase() === "hd-4" && s.type === "sub") ||
             serversList[0];
         }
 
@@ -241,7 +217,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
       isServerFetchInProgress.current || isStreamFetchInProgress.current
     ) return;
 
-    const iframeServers = ["hd-1", "hd-4", "vidstreaming", "vidcloud", "douvideo", "megaplay", "vidwish"];
+    const iframeServers = ["vidstreaming", "vidcloud", "douvideo", "megaplay", "vidwish"];
 
     if (iframeServers.includes(activeServerName?.toLowerCase()) && !serverLoading) {
       setBuffering(false);
@@ -279,8 +255,8 @@ export const useWatch = (animeId, initialEpisodeId) => {
         if (server) {
           const data = await getStreamInfo(
             animeId, 
-            episodeId, 
-            server.serverName.toLowerCase() === "hd-3" ? "hd-1" : server.serverName.toLowerCase(),
+            episodeId,
+            server.serverName.toLowerCase(),
             server.type.toLowerCase()
           );
           setStreamInfo(data);

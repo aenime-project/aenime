@@ -61,7 +61,7 @@ function Servers({
               If the current server doesn&apos;t work, please try other servers then hit reload.
             </p>
           </div>
-          <div className="bg-[#201F31] flex flex-col max-[600px]:h-full">
+          <div className="bg-[#121212] flex flex-col max-[600px]:h-full">
             {rawServers.length > 0 && (
               <div
                 className={`servers px-2 flex items-center flex-wrap ml-2 max-[600px]:py-2 ${

@@ -264,6 +264,7 @@ export default function Player({
     if (!streamUrl || !artRef.current) return;
 
     const iframeUrl = streamInfo?.streamingLink?.iframe;
+    console.log("▶ iframeUrl:", iframeUrl);
     const headers = {
       referer: iframeUrl ? new URL(iframeUrl).origin + "/" : window.location.origin + "/",
     };

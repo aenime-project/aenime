@@ -113,7 +113,7 @@ function SplashScreen() {
           )}
         </nav>
 
-        <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#2B2A3C] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
+        <div className="splashscreen min-h-[480px] min-[1200px]:min-h-[520px] bg-[#121212] rounded-[40px] flex relative mt-7 max-[780px]:w-full items-stretch max-[780px]:rounded-[30px] max-[520px]:rounded-none max-[520px]:min-h-fit max-[520px]:pb-4 max-[520px]:mt-4">
           <div className="h-auto flex flex-col w-[700px] relative z-40 px-20 py-20 left-0 max-[1200px]:py-12 max-[780px]:px-12 max-[520px]:py-4 max-[520px]:px-8">
             <Link
               to="/home"
@@ -162,7 +162,7 @@ function SplashScreen() {
               </Link>
             </div>
           </div>
-          <div className="h-full w-[600px] absolute right-0 max-[780px]:hidden">
+          <div className="h-full absolute right-0 max-[780px]:hidden">
             <div className="splashoverlay"></div>
             <img
               src="/splash.webp"
