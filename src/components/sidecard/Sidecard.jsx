@@ -39,7 +39,7 @@ function Sidecard({ data, label, className, limit }) {
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
       <h1 className="font-bold text-2xl text-[#B24B92]">{label}</h1>
-      <div className="flex flex-col space-y-4 bg-[#2B2A3C] p-4 pt-8">
+      <div className="flex flex-col space-y-4 bg-[#262626] p-4 pt-8 rounded-md">
         {data &&
           displayedData.map((item, index) => (
             <div

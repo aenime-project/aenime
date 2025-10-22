@@ -52,7 +52,7 @@ function Topten({ data, className }) {
     <div className={`flex flex-col space-y-6 ${className}`}>
       <div className="flex justify-between items-center max-[350px]:flex-col max-[350px]:gap-y-2 max-[350px]:items-start">
         <h1 className="font-bold text-2xl text-[#B24B92]">Top 10</h1>
-        <ul className="flex justify-between w-fit bg-[#373646] rounded-[4px] text-sm font-bold">
+        <ul className="flex justify-between w-fit bg-[#262626] rounded-[4px] text-sm font-bold">
           {["today", "week", "month"].map((period) => (
             <li
               key={period}
@@ -71,7 +71,7 @@ function Topten({ data, className }) {
         </ul>
       </div>
 
-      <div className="flex flex-col space-y-4 bg-[#2B2A3C] p-4 pt-8">
+      <div className="flex flex-col space-y-4 bg-[#262626] p-4 pt-8 rounded-md">
         {currentData &&
           currentData.map((item, index) => (
             <div

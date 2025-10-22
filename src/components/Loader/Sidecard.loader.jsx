@@ -3,7 +3,7 @@ function SidecardLoader({ className }) {
     return (
         <div className={`flex flex-col space-y-6 ${className}`}>
             <Skeleton className='w-[200px] h-[15px]' />
-            <div className='flex flex-col space-y-4 bg-[#2B2A3C] p-4 pt-8 w-full'>
+            <div className='flex flex-col space-y-4 bg-[#262626] p-4 pt-8 rounded-md w-full'>
                 {[...Array(10)].map((_, index) => (
                     <div key={index} className='flex items-center gap-x-4'>
                         <div className="flex pb-4 relative container items-center">
