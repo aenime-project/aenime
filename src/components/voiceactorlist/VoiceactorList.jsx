@@ -91,7 +91,7 @@ function VoiceactorList({ id, isOpen, onClose }) {
                     className="w-[45px] h-[45px] rounded-full flex-shrink-0 object-cover hover:cursor-pointer max-[480px]:w-[30px] max-[480px]:h-[30px]"
                     loading="lazy"
                     onError={(e) => {
-                      e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
+                      e.target.src = "https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/no-avatar.jpg";
                     }}
                   />
                   <div className="flex flex-col text-left gap-y-1 w-full">
@@ -122,7 +122,7 @@ function VoiceactorList({ id, isOpen, onClose }) {
                             border: "4px solid rgba(105, 108, 117, 0.8)",
                           }}
                           onError={(e) => {
-                            e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
+                            e.target.src = "https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/no-avatar.jpg";
                           }}
                         />
                       ))}
@@ -141,7 +141,7 @@ function VoiceactorList({ id, isOpen, onClose }) {
                         loading="lazy"
                         className="w-[45px] h-[45px] rounded-full opacity-70 flex-shrink-0 object-cover grayscale hover:grayscale-0 hover:opacity-100 max-[480px]:w-[30px] max-[480px]:h-[30px] transition-all duration-300 ease-in-out"
                         onError={(e) => {
-                          e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
+                          e.target.src = "https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/no-avatar.jpg";
                         }}
                       />
                     </div>

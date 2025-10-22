@@ -59,7 +59,7 @@ function Suggestion({ keyword, className }) {
                 className="w-[50px] h-[75px] flex-shrink-0 object-cover"
                 alt=""
                 onError={(e) => {
-                  e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
+                  e.target.src = "https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/no-avatar.jpg";
                 }}
               />
               <div className="flex flex-col gap-y-[2px]">

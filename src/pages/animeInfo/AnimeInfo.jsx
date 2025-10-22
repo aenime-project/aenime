@@ -386,7 +386,7 @@ function AnimeInfo({ random = false }) {
                     >
                       {season.season}
                     </p>
-                    <div className="absolute inset-0 z-10 bg-[url('https://i.postimg.cc/pVGY6RXd/thumb.png')] bg-repeat"></div>
+                    <div className="absolute inset-0 z-10 bg-[url('https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/thumb.png')] bg-repeat"></div>
                     <img
                       src={season.season_poster}
                       alt=""

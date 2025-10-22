@@ -26,7 +26,7 @@ function Voiceactor({ animeInfo, className }) {
         {animeInfo.charactersVoiceActors.slice(0, 6).map((character, index) => (
           <div
             key={index}
-            className="flex justify-between items-center px-3 py-4 rounded-md bg-[#373646]"
+            className="flex justify-between items-center px-3 py-4 rounded-md bg-[#262626]"
           >
             {character.character && (
               <div className="w-[50%] float-left overflow-hidden max-[350px]:w-[45%]">
@@ -37,7 +37,7 @@ function Voiceactor({ animeInfo, className }) {
                       title={character.character.name || "Character"}
                       alt={character.character.name || "Character"}
                       onError={(e) => {
-                        e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
+                        e.target.src = "https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/no-avatar.jpg";
                       }}
                       className="w-[45px] h-[45px] flex-shrink-0 rounded-full object-cover"
                       loading="lazy"
@@ -75,7 +75,7 @@ function Voiceactor({ animeInfo, className }) {
                       alt={character.voiceActors[0].name || "Voice Actor"}
                       loading="lazy"
                       onError={(e) => {
-                        e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
+                        e.target.src = "https://raw.githubusercontent.com/aenime-project/aenime/refs/heads/main/images/no-avatar.jpg";
                       }}
                       className="w-[45px] h-[45px] rounded-full object-cover grayscale hover:grayscale-0 hover:cursor-pointer flex-shrink-0 transition-all duration-300 ease-in-out"
                     />
