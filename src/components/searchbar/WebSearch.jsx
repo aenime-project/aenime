@@ -54,12 +54,12 @@ function WebSearch() {
                 }}
             />
             <button
-                className="bg-white p-2 max-[600px]:bg-transparent focus:outline-none max-[600px]:p-0"
+                className="p-2 max-[600px]:bg-transparent focus:outline-none max-[600px]:p-0"
                 onClick={handleSearchClick}
             >
                 <FontAwesomeIcon
                     icon={faMagnifyingGlass}
-                    className="text-lg text-black hover:text-[#B24B92] max-[600px]:text-white max-[600px]:text-2xl max-[575px]:text-xl max-[600px]:mt-[7px]"
+                    className="text-lg text-white hover:text-[#B24B92] max-[600px]:text-white max-[600px]:text-2xl max-[575px]:text-xl max-[600px]:mt-[7px]"
                 />
             </button>
             {searchValue.trim() && isFocused && (

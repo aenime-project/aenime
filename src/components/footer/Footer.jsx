@@ -15,7 +15,7 @@ function Footer() {
           className="w-[200px] h-[100px]"
         />
       </div>
-      <div className="flex py-5 flex-col w-full space-y-4 max-md:items-center max-[500px]:bg-[#373646]">
+      <div className="flex py-5 flex-col w-full space-y-4 max-md:items-center max-[500px]:bg-[#262626]">
         <div className="flex w-fit items-center space-x-6 max-[500px]:hidden">
           <p className="text-2xl font-bold max-md:text-lg">A-Z LIST</p>
           <p
@@ -37,7 +37,7 @@ function Footer() {
             <Link
               to={`az-list/${item === "All" ? "" : item}`}
               key={index}
-              className="text-lg bg-[#373646] px-2 rounded-md font-bold hover:text-black hover:bg-[#B24B92] hover:cursor-pointer transition-all ease-out"
+              className="text-lg bg-[#262626] px-2 rounded-md font-bold hover:text-black hover:bg-[#B24B92] hover:cursor-pointer transition-all ease-out"
             >
               {item}
             </Link>

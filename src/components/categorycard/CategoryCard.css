@@ -12,8 +12,11 @@
     rgba(32, 31, 49, 0) 20%,
     rgba(32, 31, 49, 0) 100%
   );
-
   z-index: 50;
+  border-radius: inherit !important;
+}
+.overflow-hidden {
+  border-radius: inherit !important;
 }
 .dot {
   width: 5px;
@@ -24,4 +27,7 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   display: inline-block;
+}
+.w-full {
+    border-radius: 10px !important;
 }

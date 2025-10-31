@@ -26,7 +26,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
             <button
                 key={p}
                 onClick={() => handlePageChange(p)}
-                className={`w-[40px] text-[15px] mx-1 flex justify-center items-center p-2 rounded-full font-bold ${page === p ? 'bg-[#B24B92] text-[#2B2A3C] cursor-default' : 'bg-[#2B2A3C]  text-[#999] hover:text-[#B24B92]'} ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} `}
+                className={`w-[40px] text-[15px] mx-1 flex justify-center items-center p-2 rounded-full font-bold ${page === p ? 'bg-[#B24B92] text-[#262626] cursor-default' : 'bg-[#262626]  text-[#999] hover:text-[#B24B92]'} ${start ? "bg-[#353537]" : "bg-[#262626]"} `}
             >
                 {p}
             </button>
@@ -38,7 +38,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page > 1 && totalPages > 2 && (
                     <button
                         onClick={() => handlePageChange(1)}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#262626]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
                     >
                         <FontAwesomeIcon icon={faAngleDoubleLeft} />
                     </button>
@@ -46,7 +46,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page > 1 && (
                     <button
                         onClick={() => { if (page > 0) handlePageChange(page - 1) }}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#262626]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
                     >
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
@@ -55,7 +55,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page < totalPages && (
                     <button
                         onClick={() => { if (page < totalPages) handlePageChange(page + 1) }}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#262626]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
                     >
                         <FontAwesomeIcon icon={faChevronRight} />
                     </button>
@@ -63,7 +63,7 @@ function PageSlider({ page, totalPages, handlePageChange, start = false, style }
                 {page < totalPages && totalPages > 2 && (
                     <button
                         onClick={() => handlePageChange(totalPages)}
-                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#2B2A3C]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
+                        className={`w-[40px] mx-1 p-2 ${start ? "bg-[#353537]" : "bg-[#262626]"} rounded-full text-[#999] text-[8px] hover:text-[#B24B92]`}
                     >
                         <FontAwesomeIcon icon={faAngleDoubleRight} />
                     </button>
