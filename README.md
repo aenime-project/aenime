@@ -16,7 +16,7 @@
 </p>
 </p>
 <p align="center">
-    <a href="https://aenime.qzz.io">Aenime</a> is an open-source anime streaming service that uses <a href="https://github.com/itzzzme/anime-api">custom</a> API, built using ReactJS with javascript and Tailwind CSS. It lets you easily find any anime with intuitive search & suggestion feature and stream without any ads.
+    <a href="https://aenime.qzz.io">Aenime</a> is an open-source anime streaming service that uses <a href="https://github.com/carlodandan/aesthetic-anime-api">custom</a> API (thanks to <a href="https://github.com/itzzzme/aesthetic-anime-api">itzzzme</a>), built using ReactJS with javascript and Tailwind CSS and can be deployed in Cloudflare (as Worker). It lets you easily find any anime with intuitive search, suggestion feature, top search and stream without any ads.
  </p>
 
 <details>
