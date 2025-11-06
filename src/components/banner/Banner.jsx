@@ -119,7 +119,7 @@ function Banner({ item, index }) {
             </Link>
           </button>
           <Link
-            to={`/${item.id}`}
+            to={`/info/${item.id}`}
             className="flex bg-[#3B3A52] justify-center items-center px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit max-[320px]:px-3"
           >
             <p className="text-white max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">

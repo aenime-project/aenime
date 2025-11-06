@@ -544,7 +544,7 @@ export default function Watch() {
                 {` DUB in HD quality.`}
               </p>
               <Link
-                to={`/${animeId}`}
+                to={`/info/${animeId}`}
                 className="w-fit text-[13px] bg-white rounded-[12px] px-[10px] py-1 text-black"
               >
                 View detail

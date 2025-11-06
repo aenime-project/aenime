@@ -112,7 +112,7 @@ function AnimeInfo({ random = false }) {
     }
   }, [id, random]);
   useEffect(() => {
-    if (animeInfo && location.pathname === `/${animeInfo.id}`) {
+    if (animeInfo && location.pathname === `/info/${animeInfo.id}`) {
       document.title = `Watch ${animeInfo.title} English Sub/Dub online Free on ${website_name}`;
     }
     return () => {
@@ -238,7 +238,7 @@ function AnimeInfo({ random = false }) {
               </Link>
             ) : (
               <Link
-                to={`/${animeInfo.id}`}
+                to={`/info/${animeInfo.id}`}
                 className="flex gap-x-2 px-6 py-2 bg-[#B24B92] w-fit text-black items-center rounded-3xl mt-5"
               >
                 <p className="text-lg font-medium">Not released</p>
@@ -369,7 +369,7 @@ function AnimeInfo({ random = false }) {
               <div className="flex flex-wrap gap-4 max-[575px]:grid max-[575px]:grid-cols-3 max-[575px]:gap-3 max-[480px]:grid-cols-2">
                 {seasons.map((season, index) => (
                   <Link
-                    to={`/${season.id}`}
+                    to={`/info/${season.id}`}
                     key={index}
                     className={`relative w-[20%] h-[60px] rounded-lg overflow-hidden cursor-pointer group ${
                       currentId === String(season.id)
