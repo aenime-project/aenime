@@ -46,7 +46,7 @@ const Trending = ({ trending }) => {
                     </div>
                   </div>
                   <Link
-                    to={`/${item.id}`}
+                    to={`/watch/${item.id}`}
                     className="inline-block bg-[#2a2c31] absolute w-auto left-[40px] right-0 top-0 bottom-0 max-[575px]:left-0 max-[575px]:top-0 max-[575px]:bottom-0"
                   >
                     <img

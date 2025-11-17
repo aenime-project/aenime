@@ -201,7 +201,7 @@ const Schedule = () => {
             : []
           ).map((item, idx) => (
             <Link
-              to={`/${item.id}`}
+              to={`/watch/${item.id}`}
               key={idx}
               className="w-full flex justify-between py-4 border-[#FFFFFF0D] border-b-[1px] group cursor-pointer max-[325px]:py-2"
             >
