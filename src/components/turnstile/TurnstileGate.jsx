@@ -65,7 +65,7 @@ export default function TurnstileGate({ siteKey, children }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#fff",
+            background: "#252434",
             zIndex: 9999,
           }}
         >
