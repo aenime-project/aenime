@@ -93,23 +93,32 @@ export default function Watch() {
     setAutoNext,
   } = useWatchControl();
 
-  // Add this function to check if current server uses iframe
+  // Check if current server uses iframe
   const isIframeServer = () => {
-    const iframeServers = ["hd-1", "hd-4", "vidstreaming", "vidcloud", "douvideo", "megaplay", "vidwish"];
-    return iframeServers.includes(activeServerName?.toLowerCase());
+    const iframeServers = ["megaplay", "vidwish", "aniwaves"];
+    const isNamedIframe =
+      iframeServers.includes(activeServerName?.toLowerCase()) ||
+      activeServerName?.toLowerCase() === "aniwaves" ||
+      streamInfo?.streamingLink?.isIframe === true;
+    const isEmbedType = streamInfo?.streamingLink?.link?.type === "embed";
+    const hasIframeNoFile = Boolean(
+      streamInfo?.streamingLink?.iframe && !streamInfo?.streamingLink?.link?.file
+    );
+    return isNamedIframe || isEmbedType || hasIframeNoFile;
   };
 
   useEffect(() => {
     if (!episodes || episodes.length === 0) return;
     
     const isValidEpisode = episodes.some(ep => {
-      const epNumber = ep.id.split('ep=')[1];
-      return epNumber === episodeId; 
+      const epNumber = ep.id?.includes('ep=') ? ep.id.split('ep=')[1] : String(ep.episode_no);
+      return String(epNumber) === String(episodeId); 
     });
     
     // If missing or invalid episodeId, fallback to first
     if (!episodeId || !isValidEpisode) {
-      const fallbackId = episodes[0].id.match(/ep=(\d+)/)?.[1];
+      const firstEp = episodes[0];
+      const fallbackId = firstEp.id?.match(/ep=(\d+)/)?.[1] || String(firstEp.episode_no);
       if (fallbackId && fallbackId !== episodeId) {
         setEpisodeId(fallbackId);
       }
@@ -138,7 +147,7 @@ export default function Watch() {
   // Redirect if no episodes
   useEffect(() => {
     if (totalEpisodes !== null && totalEpisodes === 0) {
-      navigate(`/${animeId}`);
+      navigate(`/info/${animeId}`);
     }
   }, [streamInfo, episodeId, animeId, totalEpisodes, navigate]);
 
@@ -287,7 +296,17 @@ export default function Watch() {
                     // Iframe player for iframe-based servers with logo overlay
                     <div className="relative w-full h-full">
                       <iframe
-                        src={streamUrl}
+                        key={`${activeServerId}-${episodeId}`}
+                        src={
+                          streamUrl && !streamUrl.includes(".m3u8") && (streamUrl.includes(".mp4") || streamUrl.includes("savedly"))
+                            ? undefined
+                            : (streamInfo?.streamingLink?.iframe || streamUrl)
+                        }
+                        srcDoc={
+                          streamUrl && !streamUrl.includes(".m3u8") && (streamUrl.includes(".mp4") || streamUrl.includes("savedly"))
+                            ? `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><style>*{margin:0;padding:0;background:#000}html,body{width:100%;height:100%;overflow:hidden}video{width:100%;height:100%;object-fit:contain}</style></head><body><video src="${streamUrl}" controls autoplay playsinline></video></body></html>`
+                            : undefined
+                        }
                         width="100%"
                         height="100%"
                         frameBorder="0"
@@ -566,7 +585,7 @@ export default function Watch() {
       </div>
       <div className="w-full px-4 grid grid-cols-[minmax(0,75%),minmax(0,25%)] gap-x-6 max-[1200px]:flex flex-col">
         <div className="mt-[15px] flex flex-col gap-y-7">
-          {animeInfo?.charactersVoiceActors.length > 0 && (
+          {animeInfo?.charactersVoiceActors?.length > 0 && (
             <Voiceactor animeInfo={animeInfo} className="!mt-0" />
           )}
           {animeInfo?.recommended_data.length > 0 ? (

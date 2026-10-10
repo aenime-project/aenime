@@ -22,6 +22,7 @@ function Servers({
   useEffect(() => {
     const savedServerName = localStorage.getItem("server_name");
 
+    // Only override if user has a saved preference
     if (savedServerName) {
       const matchingServer = servers?.find(
         (server) => server.serverName === savedServerName
@@ -29,13 +30,10 @@ function Servers({
 
       if (matchingServer) {
         setActiveServerId(matchingServer.data_id);
-      } else if (servers && servers.length > 0) {
-        setActiveServerId(servers[0].data_id);
       }
-    } else if (servers && servers.length > 0) {
-      setActiveServerId(servers[0].data_id);
     }
-  }, [servers]);
+    // If no saved preference, let useWatch's hook handle the default (MegaPlay)
+  }, [servers, activeServerId]);
 
   const handleServerSelect = (server) => {
     setActiveServerId(server.data_id);

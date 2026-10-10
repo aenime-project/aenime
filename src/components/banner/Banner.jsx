@@ -16,9 +16,16 @@ function Banner({ item, index }) {
   return (
     <section className="spotlight w-full h-full">
       <img
-        src={`${item.poster}`}
+        src={item.banner || item.bannerImage || item.poster}
         alt={item.title}
-        className="absolute right-0 object-cover h-full w-[80%] bg-auto max-[1200px]:w-full max-[1200px]:bottom-0"
+        className="absolute right-0 object-cover h-full w-[80%] max-[1200px]:w-full max-[1200px]:bottom-0 transition-opacity duration-500"
+        loading={index === 0 ? "eager" : "lazy"}
+        fetchPriority={index === 0 ? "high" : "auto"}
+        onError={(e) => {
+          if (item.poster && e.currentTarget.src !== item.poster) {
+            e.currentTarget.src = item.poster;
+          }
+        }}
       />
       <div className="spotlight-overlay"></div>
       <div className="absolute flex flex-col left-0 bottom-[50px] w-[55%] p-4 z-10 max-[1390px]:w-[45%] max-[1390px]:bottom-[10px] max-[1300px]:w-[600px] max-[1120px]:w-[60%] max-md:w-[90%] max-[300px]:w-full">
@@ -106,26 +113,26 @@ function Banner({ item, index }) {
           {item.description}
         </p>
         <div className="flex gap-x-5 mt-10 max-md:mt-6 max-sm:w-full max-[320px]:flex-col max-[320px]:space-y-3">
-          <button className="flex justify-center items-center bg-[#B24B92] px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit ">
+          <Link
+            to={`/watch/${item.id}`}
+            className="flex justify-center items-center bg-[#B24B92] hover:bg-[#c95ba7] text-white px-5 py-2.5 rounded-3xl gap-x-2 transition-all duration-300 max-[320px]:w-fit shadow-md group"
+          >
             <FontAwesomeIcon
               icon={faPlay}
-              className="text-[8px] bg-[#000000] px-[6px] py-[6px] rounded-full text-[#B24B92] max-[320px]:text-[6px]"
+              className="text-[8px] bg-black px-[6px] py-[6px] rounded-full text-[#B24B92] max-[320px]:text-[6px]"
             />
-            <Link
-              to={`/watch/${item.id}`}
-              className="max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]"
-            >
+            <span className="max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">
               Watch Now
-            </Link>
-          </button>
+            </span>
+          </Link>
           <Link
             to={`/info/${item.id}`}
-            className="flex bg-[#3B3A52] justify-center items-center px-4 py-2 rounded-3xl gap-x-2 max-[320px]:w-fit max-[320px]:px-3"
+            className="flex bg-[#3B3A52] hover:bg-[#4d4b68] text-white justify-center items-center px-5 py-2.5 rounded-3xl gap-x-2 transition-all duration-300 max-[320px]:w-fit max-[320px]:px-3"
           >
-            <p className="text-white max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">
+            <span className="max-[1000px]:text-[15px] font-semibold max-[320px]:text-[12px]">
               Detail
-            </p>
-            <FaChevronRight className="text-white max-[320px]:text-[10px]" />
+            </span>
+            <FaChevronRight className="max-[320px]:text-[10px]" />
           </Link>
         </div>
       </div>

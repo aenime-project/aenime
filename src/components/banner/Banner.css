@@ -36,6 +36,7 @@
       rgba(18, 18, 16, 0) 100%
     );
   z-index: 1;
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 1300px) {

@@ -47,32 +47,16 @@ const KEY_CODES = {
   ARROW_LEFT: "ArrowLeft",
 };
 
-// ✅ ADDED: Failover function to test proxy URLs
-const testProxyUrl = async (proxyUrl, streamUrl, headers) => {
+const getSafeReferer = (info) => {
   try {
-    const testUrl = proxyUrl + encodeURIComponent(streamUrl) + "&headers=" + encodeURIComponent(JSON.stringify(headers));
-    const response = await fetch(testUrl, { method: 'HEAD' });
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
-};
-
-// ✅ ADDED: Function to get working proxy with failover
-const getWorkingProxyUrl = async (proxies, streamUrl, headers) => {
-  if (!proxies || proxies.length === 0) {
-    throw new Error('No proxies available');
-  }
-
-  // Try proxies in sequence until one works
-  for (const proxy of proxies) {
-    const isWorking = await testProxyUrl(proxy, streamUrl, headers);
-    if (isWorking) {
-      return proxy;
+    const iframeUrl = info?.streamingLink?.iframe;
+    if (iframeUrl && !iframeUrl.includes("localhost") && !iframeUrl.includes("127.0.0.1")) {
+      return new URL(iframeUrl).origin + "/";
     }
+  } catch (e) {
+    // ignore
   }
-
-  throw new Error('All proxies failed');
+  return "";
 };
 
 export default function Player({
@@ -95,13 +79,9 @@ export default function Player({
   const leftAtRef = useRef(0);
   const boundKeydownRef = useRef(null);
   const proxy = import.meta.env.VITE_PROXY_URL;
-  const m3u8proxy = import.meta.env.VITE_M3U8_PROXY_URL?.split(",") || [];
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(
     episodes?.findIndex((episode) => episode.id.match(/ep=(\d+)/)?.[1] === episodeId)
   );
-  // ✅ ADDED: State to track current working proxy
-  const [currentProxy, setCurrentProxy] = useState(null);
-  const [proxyError, setProxyError] = useState(null);
 
   useEffect(() => {
     if (episodes?.length > 0) {
@@ -131,32 +111,6 @@ export default function Player({
       return cleanup;
     }
   }, [streamUrl, intro, outro]);
-
-  // ✅ ADDED: Initialize proxy selection when streamUrl changes
-  useEffect(() => {
-    if (!streamUrl || m3u8proxy.length === 0) return;
-
-    const initializeProxy = async () => {
-      try {
-        setProxyError(null);
-        const iframeUrl = streamInfo?.streamingLink?.iframe;
-        const headers = {
-          referer: iframeUrl ? new URL(iframeUrl).origin + "/" : window.location.origin + "/",
-        };
-
-        const workingProxy = await getWorkingProxyUrl(m3u8proxy, streamUrl, headers);
-        setCurrentProxy(workingProxy);
-      } catch (error) {
-        console.error('❌ All proxies failed:', error.message);
-        setProxyError(error.message);
-        // Fallback to random proxy if all fail (might still work)
-        const fallbackProxy = m3u8proxy[Math.floor(Math.random() * m3u8proxy.length)];
-        setCurrentProxy(fallbackProxy);
-      }
-    };
-
-    initializeProxy();
-  }, [streamUrl, m3u8proxy, streamInfo]);
 
   const playM3u8 = (video, url, art) => {
     if (Hls.isSupported()) {
@@ -237,10 +191,20 @@ export default function Player({
 
   const createChapters = () => {
     const chapters = [];
-    if (intro?.start !== 0 || intro?.end !== 0) {
+    if (
+      intro &&
+      typeof intro.start === "number" &&
+      typeof intro.end === "number" &&
+      (intro.start !== 0 || intro.end !== 0)
+    ) {
       chapters.push({ start: intro.start, end: intro.end, title: "intro" });
     }
-    if (outro?.start !== 0 || outro?.end !== 0) {
+    if (
+      outro &&
+      typeof outro.start === "number" &&
+      typeof outro.end === "number" &&
+      (outro.start !== 0 || outro.end !== 0)
+    ) {
       chapters.push({ start: outro.start, end: outro.end, title: "outro" });
     }
     return chapters;
@@ -346,17 +310,33 @@ export default function Player({
   };
 
   useEffect(() => {
-    if (!streamUrl || !artRef.current || !currentProxy) return;
+    if (!streamUrl || !artRef.current) return;
 
-    const iframeUrl = streamInfo?.streamingLink?.iframe;
-    
-    if (proxyError) {
-      console.warn("⚠️ Using fallback proxy due to previous errors");
+    const streamHeaders = streamInfo?.streamingLink?.headers || {};
+    const safeReferer = getSafeReferer(streamInfo);
+    const headers = {};
+    const ref = streamHeaders.Referer || streamHeaders.referer || safeReferer;
+    if (ref && !ref.includes("localhost") && !ref.includes("127.0.0.1")) {
+      headers.Referer = ref;
+    }
+    for (const [k, v] of Object.entries(streamHeaders)) {
+      if (k.toLowerCase() !== "referer") {
+        headers[k] = v;
+      }
     }
 
-    const headers = {
-      referer: iframeUrl ? new URL(iframeUrl).origin + "/" : window.location.origin + "/",
-    };
+    const isM3u8 =
+      streamUrl.includes(".m3u8") ||
+      streamInfo?.streamingLink?.link?.type === "hls";
+
+    const m3u8Proxy =
+      import.meta.env.VITE_M3U8_PROXY_URL ||
+      (import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/m3u8-proxy?url=` : "/api/m3u8-proxy?url=");
+
+    const playerUrl =
+      isM3u8 && m3u8Proxy && (Object.keys(headers).length > 0 || streamUrl.includes(".m3u8"))
+        ? `${m3u8Proxy}${encodeURIComponent(streamUrl)}&headers=${encodeURIComponent(JSON.stringify(headers))}`
+        : streamUrl;
 
     const container = artRef.current;
     let fullscreenRefocusTimeout = null;
@@ -373,14 +353,9 @@ export default function Player({
     }
 
     const art = new Artplayer({
-      // ✅ MODIFIED: Use the tested working proxy instead of random
-      url:
-        currentProxy +
-        encodeURIComponent(streamUrl) +
-        "&headers=" +
-        encodeURIComponent(JSON.stringify(headers)),
+      url: playerUrl,
       container: artRef.current,
-      type: "m3u8",
+      type: isM3u8 ? "m3u8" : (streamUrl.includes(".mp4") ? "mp4" : "auto"),
       autoplay: autoPlay,
       volume: 1,
       setting: true,
@@ -396,7 +371,6 @@ export default function Player({
       fastForward: true,
       aspectRatio: true,
       moreVideoAttr: {
-        crossOrigin: "anonymous",
         preload: "none",
         playsInline: true,
       },
@@ -590,9 +564,12 @@ export default function Player({
       const subs = (subtitles || []).map((s) => ({ ...s }));
 
       for (const sub of subs) {
-        const encodedUrl = encodeURIComponent(sub.file);
-        const encodedHeaders = encodeURIComponent(JSON.stringify(headers));
-        sub.file = `${proxy}${encodedUrl}&headers=${encodedHeaders}`;
+        if (!sub?.file) continue;
+        if (proxy) {
+          const encodedUrl = encodeURIComponent(sub.file);
+          const encodedHeaders = encodeURIComponent(JSON.stringify(headers));
+          sub.file = `${proxy}${encodedUrl}&headers=${encodedHeaders}`;
+        }
       }
 
       const defaultSubtitle = subs?.find((sub) => sub.label.toLowerCase() === "english");
@@ -644,7 +621,7 @@ export default function Player({
       if (thumbnail) {
         art.plugins.add(
           artplayerPluginVttThumbnail({
-            vtt: `${proxy}${thumbnail}`,
+            vtt: proxy ? `${proxy}${thumbnail}` : thumbnail,
           })
         );
       }
@@ -742,19 +719,7 @@ export default function Player({
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [streamUrl, subtitles, intro, outro, currentProxy]); // ✅ ADDED: currentProxy to dependencies
-
-  // ✅ ADDED: Loading state for proxy selection
-  if (!currentProxy && m3u8proxy.length > 0) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-gray-900">
-        <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p>Loading... please wait.</p>
-        </div>
-      </div>
-    );
-  }
+  }, [streamUrl, subtitles, intro, outro]);
 
   return <div ref={artRef} className="w-full h-full" />;
 }

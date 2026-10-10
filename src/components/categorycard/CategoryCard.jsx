@@ -26,9 +26,7 @@ const CategoryCard = React.memo(
     const { language } = useLanguage();
     const navigate = useNavigate();
     const [showPlay, setShowPlay] = useState(false);
-    if (limit) {
-      data = data.slice(0, limit);
-    }
+    const safeData = Array.isArray(data) ? (limit ? data.slice(0, limit) : data) : [];
 
     const [itemsToRender, setItemsToRender] = useState({
       firstRow: [],
@@ -38,15 +36,15 @@ const CategoryCard = React.memo(
     const getItemsToRender = useCallback(() => {
       if (categoryPage) {
         const firstRow =
-          window.innerWidth > 758 && data.length > 4 ? data.slice(0, 4) : [];
+          window.innerWidth > 758 && safeData.length > 4 ? safeData.slice(0, 4) : [];
         const remainingItems =
-          window.innerWidth > 758 && data.length > 4
-            ? data.slice(4)
-            : data.slice(0);
+          window.innerWidth > 758 && safeData.length > 4
+            ? safeData.slice(4)
+            : safeData.slice(0);
         return { firstRow, remainingItems };
       }
-      return { firstRow: [], remainingItems: data.slice(0) };
-    }, [categoryPage, data]);
+      return { firstRow: [], remainingItems: safeData.slice(0) };
+    }, [categoryPage, safeData]);
 
     useEffect(() => {
       const handleResize = () => {
@@ -72,7 +70,7 @@ const CategoryCard = React.memo(
     const [hoveredItem, setHoveredItem] = useState(null);
     const [hoverTimeout, setHoverTimeout] = useState(null);
     const { tooltipPosition, tooltipHorizontalPosition, cardRefs } =
-      useToolTipPosition(hoveredItem, data);
+      useToolTipPosition(hoveredItem, safeData);
     const handleMouseEnter = (item, index) => {
       const timeout = setTimeout(() => {
         setHoveredItem(item.id + index);
@@ -211,7 +209,7 @@ const CategoryCard = React.memo(
                   )}
                   <div className="flex items-center gap-x-2 w-full mt-2 overflow-hidden">
                     <div className="text-gray-400 text-[14px] text-nowrap overflow-hidden text-ellipsis">
-                      {item.tvInfo.showType.split(" ").shift()}
+                      {item.tvInfo?.showType ? item.tvInfo.showType.split(" ").shift() : "TV"}
                     </div>
                     <div className="dot"></div>
                     <div className="text-gray-400 text-[14px] text-nowrap overflow-hidden text-ellipsis">
@@ -314,7 +312,7 @@ const CategoryCard = React.memo(
                 </Link>
                 <div className="flex items-center gap-x-2 w-full mt-2 overflow-hidden">
                   <div className="text-gray-400 text-[14px] text-nowrap overflow-hidden text-ellipsis">
-                    {item.tvInfo.showType.split(" ").shift()}
+                    {item.tvInfo?.showType ? item.tvInfo.showType.split(" ").shift() : "TV"}
                   </div>
                   <div className="dot"></div>
                   <div className="text-gray-400 text-[14px] text-nowrap overflow-hidden text-ellipsis">

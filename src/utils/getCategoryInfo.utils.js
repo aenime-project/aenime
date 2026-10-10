@@ -1,13 +1,12 @@
-import axios from "axios";
+import { fetchCategory } from "./anilist.adapter.js";
 
-const getCategoryInfo = async (path,page) => {
-  const api_url = import.meta.env.VITE_API_URL;
+const getCategoryInfo = async (path, page = 1) => {
   try {
-    const response = await axios.get(`${api_url}/${path}?page=${page}`);
-    return response.data.results;
+    const results = await fetchCategory(path, page);
+    return results;
   } catch (err) {
-    console.error("Error fetching genre info:", err);
-    return err;
+    console.error("Error fetching category info:", err);
+    return { data: [], totalPages: 1, totalPage: 1 };
   }
 };
 

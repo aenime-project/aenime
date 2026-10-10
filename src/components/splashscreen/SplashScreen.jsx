@@ -143,12 +143,22 @@ function SplashScreen() {
             </div>
             <div className="mt-8 text-[15px] leading-[1.6] max-[520px]:text-[13px] max-[520px]:leading-[1.4]">
               <span className="splashitem font-[600]">Top search: </span>
-              {topSearch.map((item, index) => (
-                <span key={index} className="splashitem font-[400]">
-                  <Link to={item.link}>{item.title}</Link>
-                  {index < topSearch.length - 1 && <span>, </span>}
-                </span>
-              ))}
+              {topSearch.map((item, index) => {
+                const title = typeof item === "string" ? item : item?.title;
+                const link =
+                  typeof item === "string"
+                    ? `/search?keyword=${encodeURIComponent(item)}`
+                    : item?.link || `/search?keyword=${encodeURIComponent(title || "")}`;
+                if (!title) return null;
+                return (
+                  <span key={index} className="splashitem font-[400]">
+                    <Link to={link} className="hover:text-[#B24B92] transition-colors">
+                      {title}
+                    </Link>
+                    {index < topSearch.length - 1 && <span>, </span>}
+                  </span>
+                );
+              })}
             </div>
             <div className="mt-8 flex max-[780px]:left-10">
               <Link to="/home" className="max-[520px]:w-full">
@@ -173,7 +183,19 @@ function SplashScreen() {
         </div>
       </div>
       <div className="mt-10 text-[14px] text-center pb-4">
-        © {logoTitle} All rights reserved. <a href="/donate" className="text-blue-400 hover:underline ml-2">Support Us</a>
+        © {logoTitle} All rights reserved.{" "}
+        <a href="/donate" className="text-blue-400 hover:underline ml-2">
+          Support Us
+        </a>{" "}
+        |{" "}
+        <a
+          href="https://panelrift.eu.cc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:underline"
+        >
+          Read Manhwa &amp; Webtoons on PanelRift
+        </a>
       </div>
     </div>
   );

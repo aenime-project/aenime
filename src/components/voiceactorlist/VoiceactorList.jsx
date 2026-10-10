@@ -36,8 +36,8 @@ function VoiceactorList({ id, isOpen, onClose }) {
       setLoading(true);
       try {
         const data = await fetchVoiceActorInfo(id, page);
-        setVoiceactorList(data.data);
-        setTotalPages(data.totalPages);
+        setVoiceactorList(data?.data || []);
+        setTotalPages(data?.totalPages || 1);
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -137,7 +137,7 @@ function VoiceactorList({ id, isOpen, onClose }) {
                       <img
                         src={item.voiceActors[0].poster}
                         alt=""
-                        title={item.voiceActors.name}
+                        title={item.voiceActors[0]?.name || "Voice Actor"}
                         loading="lazy"
                         className="w-[45px] h-[45px] rounded-full opacity-70 flex-shrink-0 object-cover grayscale hover:grayscale-0 hover:opacity-100 max-[480px]:w-[30px] max-[480px]:h-[30px] transition-all duration-300 ease-in-out"
                         onError={(e) => {

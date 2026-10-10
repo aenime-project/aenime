@@ -17,6 +17,7 @@ import Producer from "./components/producer/Producer";
 import SplashScreen from "./components/splashscreen/SplashScreen";
 import DonatePage from "./pages/donate/donate";
 import proxyWarmup from "./utils/proxyWarmup.utils";
+import ErrorBoundary from "./components/error/ErrorBoundary";
 
 function App() {
   const location = useLocation();
@@ -39,7 +40,8 @@ function App() {
       <div className="app-container">
         <main className="content">
           {!isSplashScreen && <Navbar />}
-          <Routes>
+          <ErrorBoundary>
+            <Routes>
             <Route path="/" element={<SplashScreen />} />
             <Route path="/home" element={<Home />} />
             <Route path="/info/:id" element={<AnimeInfo />} />
@@ -71,6 +73,7 @@ function App() {
             <Route path="*" element={<Error error="404" />} />
             <Route path="/donate" element={<DonatePage />} />
           </Routes>
+          </ErrorBoundary>
           {!isSplashScreen && <Footer />}
         </main>
       </div>

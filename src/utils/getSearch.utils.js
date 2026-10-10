@@ -1,16 +1,12 @@
-import axios from "axios";
+import { fetchSearch } from "./anilist.adapter.js";
 
-const getSearch = async (keyword, page) => {
-  const api_url = import.meta.env.VITE_API_URL;
-  if (!page) page = 1;
+const getSearch = async (keyword, page = 1) => {
   try {
-    const response = await axios.get(
-      `${api_url}/search?keyword=${keyword}&page=${page}`
-    );
-    return response.data.results;
+    const results = await fetchSearch(keyword, page);
+    return results;
   } catch (err) {
-    console.error("Error fetching genre info:", err);
-    return err;
+    console.error("Error fetching search results:", err);
+    return { data: [], totalPage: 1, totalPages: 1 };
   }
 };
 

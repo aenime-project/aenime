@@ -26,8 +26,8 @@ const Trending = ({ trending }) => {
           }}
           modules={[Pagination, Navigation]}
           navigation={{
-            nextEl: ".btn-next",
-            prevEl: ".btn-prev",
+            nextEl: ".trending-btn-next",
+            prevEl: ".trending-btn-prev",
           }}
         >
           {trending &&
@@ -61,10 +61,10 @@ const Trending = ({ trending }) => {
             ))}
         </Swiper>
         <div className="absolute top-0 right-0 bottom-0 w-[45px] flex flex-col space-y-2 max-[759px]:hidden">
-          <div className="btn-next bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#B24B92] hover:text-[#383747]">
+          <div className="trending-btn-next bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#B24B92] hover:text-[#383747]">
             <FaChevronRight />
           </div>
-          <div className="btn-prev bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#B24B92] hover:text-[#383747]">
+          <div className="trending-btn-prev bg-[#383747] h-[50%] flex justify-center items-center rounded-[8px] cursor-pointer transition-all duration-300 ease-out hover:bg-[#B24B92] hover:text-[#383747]">
             <FaChevronLeft />
           </div>
         </div>

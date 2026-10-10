@@ -1,12 +1,11 @@
-import axios from "axios";
+import { fetchSchedule } from "./anilist.adapter.js";
 
 export default async function getSchedInfo(date) {
   try {
-    const api_url = import.meta.env.VITE_API_URL;
-    const response = await axios.get(`${api_url}/schedule?date=${date}`);
-    return response.data.results;
+    const results = await fetchSchedule(date);
+    return results;
   } catch (error) {
-    console.error(error);
-    return error;
+    console.error("Error fetching schedule info:", error);
+    return [];
   }
 }

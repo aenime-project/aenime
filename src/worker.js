@@ -28,6 +28,47 @@ export default {
       });
     }
 
+    // --- Service Binding: Forward /api/* directly to lightanime-api ---
+    if (url.pathname.startsWith('/api/') || url.pathname === '/api') {
+      const apiPath = url.pathname.replace(/^\/api/, '') || '/';
+      const targetUrl = new URL(apiPath + url.search, 'https://internal-api');
+
+      const headers = new Headers(request.headers);
+      headers.set('x-service-binding', 'aenime-internal');
+
+      const apiRequest = new Request(targetUrl, {
+        method: request.method,
+        headers,
+        body: request.body,
+        redirect: 'manual',
+      });
+
+      try {
+        const response = env.API
+          ? await env.API.fetch(apiRequest)
+          : await fetch(new URL(apiPath + url.search, 'https://lightanime-api.webbase.workers.dev'), apiRequest);
+
+        const newHeaders = new Headers(response.headers);
+        newHeaders.set('Access-Control-Allow-Origin', '*');
+        newHeaders.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        newHeaders.set('Access-Control-Allow-Headers', '*');
+
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: newHeaders,
+        });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: `API Gateway error: ${err.message}` }), {
+          status: 502,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        });
+      }
+    }
+
     // Try to serve the requested asset
     const assetResponse = await env.ASSETS.fetch(request);
     if (assetResponse.status !== 404) {

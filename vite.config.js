@@ -9,6 +9,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./"),
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://lightanime-api.webbase.workers.dev",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   build: {
     target: "es2022",
     outDir: "dist",

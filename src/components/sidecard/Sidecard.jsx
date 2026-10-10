@@ -28,14 +28,15 @@ function Sidecard({ data, label, className, limit }) {
     setShowAll((prev) => !prev);
   };
 
+  const safeData = Array.isArray(data) ? data : [];
   const displayedData = limit
-    ? data.slice(0, limit)
+    ? safeData.slice(0, limit)
     : showAll
-    ? data
-    : data.slice(0, 6);
+    ? safeData
+    : safeData.slice(0, 6);
   const [hoveredItem, setHoveredItem] = useState(null);
   const { tooltipPosition, tooltipHorizontalPosition, cardRefs } =
-    useToolTipPosition(hoveredItem, data);
+    useToolTipPosition(hoveredItem, safeData);
   return (
     <div className={`flex flex-col space-y-6 ${className}`}>
       <h1 className="font-bold text-2xl text-[#B24B92]">{label}</h1>

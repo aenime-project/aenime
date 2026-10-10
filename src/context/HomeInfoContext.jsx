@@ -5,36 +5,33 @@ const HomeInfoContext = createContext();
 
 export const HomeInfoProvider = ({ children }) => {
   const [homeInfo, setHomeInfo] = useState(() => {
-    const cached = localStorage.getItem("homeInfoCache");
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        return parsed.data || null;
-      } catch {
-        return null;
+    try {
+      const cached = JSON.parse(localStorage.getItem("homeInfoCache"));
+      if (cached?.data && Date.now() - (cached.timestamp || 0) < 2 * 60 * 60 * 1000) {
+        return cached.data;
       }
+    } catch {
+      return null;
     }
     return null;
   });
 
-  const [homeInfoLoading, setHomeInfoLoading] = useState(() => {
-    const cached = localStorage.getItem("homeInfoCache");
-    return cached ? false : true;
-  });
+  const [homeInfoLoading, setHomeInfoLoading] = useState(() => !homeInfo);
 
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchHomeInfo = async () => {
-      if (homeInfo) {
-        return; 
-      }
       try {
         const data = await getHomeInfo();
-        setHomeInfo(data);
+        if (data) {
+          setHomeInfo(data);
+        }
       } catch (err) {
         console.error("Error fetching home info:", err);
-        setError(err);
+        if (!homeInfo) {
+          setError(err);
+        }
       } finally {
         setHomeInfoLoading(false);
       }

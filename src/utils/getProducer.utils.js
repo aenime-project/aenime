@@ -1,13 +1,12 @@
-import axios from "axios";
+import { fetchProducerAnime } from "./anilist.adapter.js";
 
-const getProducer = async (producer, page) => {
-  const api_url = import.meta.env.VITE_API_URL;
+const getProducer = async (producer, page = 1) => {
   try {
-    const response = await axios.get(`${api_url}/producer/${producer}?page=${page}`);
-    return response.data.results;
+    const data = await fetchProducerAnime(producer, page);
+    return data;
   } catch (err) {
-    console.error("Error fetching genre info:", err);
-    return err;
+    console.error("Error fetching producer info:", err);
+    return { data: [], totalPages: 1 };
   }
 };
 

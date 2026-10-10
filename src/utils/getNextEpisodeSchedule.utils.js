@@ -1,13 +1,12 @@
-import axios from "axios";
+import { fetchNextSchedule } from "./anilist.adapter.js";
 
 const getNextEpisodeSchedule = async (id) => {
-  const api_url = import.meta.env.VITE_API_URL;
   try {
-    const response = await axios.get(`${api_url}/schedule/${id}`);
-    return response.data.results;
+    const data = await fetchNextSchedule(id);
+    return data;
   } catch (err) {
     console.error("Error fetching next episode schedule:", err);
-    return err;
+    return null;
   }
 };
 

@@ -47,10 +47,10 @@ const ContinueWatching = () => {
         </div>
 
         <div className="flex gap-x-2 pr-2 max-[350px]:hidden">
-          <button className="btn-prev bg-gray-700 text-white p-3 rounded-full hover:bg-gray-500 transition max-[768px]:p-2">
+          <button className="cw-btn-prev bg-gray-700 text-white p-3 rounded-full hover:bg-gray-500 transition max-[768px]:p-2" title="Previous">
             <FaChevronLeft className="text-xs" />
           </button>
-          <button className="btn-next bg-gray-700 text-white p-3 rounded-full hover:bg-gray-500 transition max-[768px]:p-2">
+          <button className="cw-btn-next bg-gray-700 text-white p-3 rounded-full hover:bg-gray-500 transition max-[768px]:p-2" title="Next">
             <FaChevronRight className="text-xs" />
           </button>
         </div>
@@ -71,8 +71,8 @@ const ContinueWatching = () => {
           }}
           modules={[Navigation]}
           navigation={{
-            nextEl: ".btn-next",
-            prevEl: ".btn-prev",
+            nextEl: ".cw-btn-next",
+            prevEl: ".cw-btn-prev",
           }}
         >
           {memoizedWatchList.map((item, index) => (

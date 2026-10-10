@@ -44,7 +44,7 @@ function Suggestion({ keyword, className }) {
         <div className="w-full flex flex-col pt-2 overflow-y-auto">
           {suggestion.map((item, index) => (
             <Link
-              to={`/${item.id}`}
+              to={`/watch/${item.id}`}
               key={index}
               className="group py-2 flex items-start gap-x-3 hover:bg-[#3c3a5e] cursor-pointer px-[10px]"
               style={{

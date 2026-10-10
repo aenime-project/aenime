@@ -50,8 +50,34 @@ function Footer() {
             hosts and providers. {website_name} is not responsible for any media
             files shown by the video providers.
           </p>
+
+          <p className="text-[#9B9BA3] text-[16px] max-md:text-center max-md:text-[12px]">
+            Looking for manhwa and webtoons? Visit{" "}
+            <a
+              href="https://panelrift.eu.cc/"
+              className="text-blue-400 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PanelRift
+            </a>
+            .
+          </p>
+
           <p className="text-[#9B9BA3] max-md:text-[14px]">
-            © {website_name}. All rights reserved. <a href="/donate" className="text-blue-400 hover:underline ml-2">Support Us</a>
+            © {website_name}. All rights reserved.{" "}
+            <a href="/donate" className="text-blue-400 hover:underline ml-2">
+              Support Us
+            </a>{" "}
+            |{" "}
+            <a
+              href="https://panelrift.eu.cc/"
+              className="text-blue-400 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read Manhwa &amp; Webtoons
+            </a>
           </p>
         </div>
       </div>

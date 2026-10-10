@@ -21,7 +21,7 @@ function Topten({ data, className }) {
   };
 
   const handleNavigate = (id) => {
-    navigate(`/${id}`);
+    navigate(`/watch/${id}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

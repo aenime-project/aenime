@@ -1,14 +1,11 @@
-import axios from "axios";
+import { fetchVoiceActors } from "./anilist.adapter.js";
 
-export default async function fetchVoiceActorInfo(id, page) {
-  const api_url = import.meta.env.VITE_API_URL;
+export default async function fetchVoiceActorInfo(id, page = 1) {
   try {
-    const response = await axios.get(
-      `${api_url}/character/list/${id}?page=${page}`
-    );
-    return response.data.results;
+    const data = await fetchVoiceActors(id, page);
+    return data;
   } catch (error) {
-    console.error("Error fetching anime info:", error);
-    return error;
+    console.error("Error fetching voice actor info:", error);
+    return { data: [], totalPages: 1 };
   }
 }

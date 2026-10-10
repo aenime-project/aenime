@@ -397,10 +397,10 @@ function AnimeInfo({ random = false }) {
               </div>
             </div>
           )}
-          {animeInfo?.charactersVoiceActors.length > 0 && (
+          {animeInfo?.charactersVoiceActors?.length > 0 && (
             <Voiceactor animeInfo={animeInfo} />
           )}
-          {animeInfo.recommended_data.length > 0 && (
+          {animeInfo?.recommended_data?.length > 0 && (
             <CategoryCard
               label="Recommended for you"
               data={animeInfo.recommended_data}
@@ -411,7 +411,7 @@ function AnimeInfo({ random = false }) {
           )}
         </div>
         <div>
-          {animeInfo.related_data.length > 0 && (
+          {animeInfo?.related_data?.length > 0 && (
             <Sidecard
               label="Related Anime"
               data={animeInfo.related_data}

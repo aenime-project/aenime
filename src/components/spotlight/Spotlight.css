@@ -27,21 +27,7 @@
 .button-prev:hover,
 .button-next:hover {
   background-color: #B24B92;
-  color: #383747;
-}
-
-.button-prev::after {
-  font-family: "Font Awesome 5 Free";
-  content: "\f053";
-  font-weight: 900;
-  font-size: 14px;
-}
-
-.button-next::after {
-  font-family: "Font Awesome 5 Free";
-  content: "\f054";
-  font-weight: 900;
-  font-size: 14px;
+  color: #ffffff;
 }
 
 .swiper-horizontal > .swiper-pagination-bullets {
